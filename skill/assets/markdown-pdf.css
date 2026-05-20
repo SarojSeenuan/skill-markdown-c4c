@@ -1,6 +1,6 @@
 /* ╔════════════════════════════════════════════════════════════════╗
    ║   M A R K D O W N - P D F   ·   D E S I G N   S Y S T E M     ║
-   ║   v3.0.0 — Swiss Modern Minimal                                ║
+   ║   v3.0.1 — Swiss Modern Minimal                                ║
    ║   Author: Ken (Saroj Seenuan)                                  ║
    ║   Updated: 2026-05-21                                          ║
    ║   Target: VSCode Markdown PDF extension (yzane.markdown-pdf)   ║
@@ -171,12 +171,11 @@ h2 {
   break-before: page !important;
 }
 
-/* 最初の H1 直後の H2 のみ改ページしない（タイトル直後にセクション開始したい場合）*/
+/* 例外：H1 直後の H2 のみ改ページしない（表紙直後にセクション開始したい場合）。
+   TOC 直後・h2:first-of-type は改ページする（INDEX とセクション 1 を別ページに分ける）。*/
 h1 + h2,
-.toc + h2,
 .no-page-break + h2,
-h2.no-page-break,
-h2:first-of-type {
+h2.no-page-break {
   page-break-before: auto !important;
   break-before: auto !important;
   margin-top: var(--sp-7) !important;
@@ -1299,5 +1298,5 @@ div[style*="page-break-after"] {
 
 
 /* ════════════════════════════════════════════════════════════════
-   END  ·  v3.0.0  ·  Swiss Modern Minimal
+   END  ·  v3.0.1  ·  Swiss Modern Minimal
    ════════════════════════════════════════════════════════════════ */

@@ -5,6 +5,14 @@ All notable changes to **skill-markdown-c4c** will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.1] — 2026-05-21
+
+### Fixed
+- **TOC 直後の H2 セクションが改ページされないバグを修正**
+  - `.toc + h2` と `h2:first-of-type` の例外ルールを削除
+  - INDEX ページとセクション 1 が正しく別ページに分かれるようになった
+  - H1 直後の H2（表紙直後）と `h2.no-page-break` クラス指定時は引き続き改ページしない
+
 ## [3.0.0] — 2026-05-21
 
 ### Added
