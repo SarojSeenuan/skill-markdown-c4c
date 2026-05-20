@@ -35,7 +35,7 @@ cd ~/.claude/skills
 tar -xzf markdown-c4c-v3.0.0.tar.gz
 
 # GitHub から取得する場合
-git clone https://github.com/c4c-internal/markdown-c4c-skill ~/.claude/skills/markdown-c4c
+git clone https://github.com/SarojSeenuan/skill-markdown-c4c ~/.claude/skills/markdown-c4c
 ```
 
 ### 2. アセットを所定のパスに配置
