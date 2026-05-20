@@ -1,0 +1,1303 @@
+/* ╔════════════════════════════════════════════════════════════════╗
+   ║   M A R K D O W N - P D F   ·   D E S I G N   S Y S T E M     ║
+   ║   v3.0.0 — Swiss Modern Minimal                                ║
+   ║   Author: Ken (Saroj Seenuan)                                  ║
+   ║   Updated: 2026-05-21                                          ║
+   ║   Target: VSCode Markdown PDF extension (yzane.markdown-pdf)   ║
+   ║                                                                ║
+   ║   BRAND CORE                                                   ║
+   ║     · Magenta Purple  #8A248C  — アクセント 1 点              ║
+   ║     · Medium Gray     #888888  — 補助・ヘアライン中間          ║
+   ║     · Ink Black       #040104  — 本文・最強罫線               ║
+   ║                                                                ║
+   ║   USAGE                                                        ║
+   ║     :root の --brand-primary / --brand-secondary / --brand-ink ║
+   ║     の 3 行だけ変えればブランド全体が一気に差し替わる。        ║
+   ╚════════════════════════════════════════════════════════════════╝ */
+
+
+/* ════════════════════════════════════════════════════════════════
+   0 · DESIGN TOKENS
+   ════════════════════════════════════════════════════════════════ */
+
+:root {
+  /* ─── 1. BRAND CORE（差し替え 3 行で全体が変わる）─── */
+  --brand-primary:     #8A248C;
+  --brand-primary-ink: #5D1860;
+  --brand-secondary:   #888888;
+  --brand-ink:         #040104;
+
+  --brand-tint-08: rgba(138, 36, 140, 0.08);
+  --brand-tint-14: rgba(138, 36, 140, 0.14);
+  --brand-tint-22: rgba(138, 36, 140, 0.22);
+
+  /* ─── 2. NEUTRAL（#040104 → #FFFFFF の 10 階調）─── */
+  --gray-00: #FFFFFF;
+  --gray-05: #FAFAFA;
+  --gray-10: #F2F2F2;
+  --gray-20: #E5E5E5;
+  --gray-30: #D1D1D1;
+  --gray-40: #B0B0B0;
+  --gray-50: #888888;
+  --gray-60: #6B6B6B;
+  --gray-70: #4A4A4A;
+  --gray-80: #2A2A2A;
+  --gray-90: #040104;
+
+  /* ─── 3. SEMANTIC（Callout 5 色）─── */
+  --semantic-info:    #0050B3;
+  --semantic-success: #2E7D32;
+  --semantic-warn:    #C77700;
+  --semantic-danger:  #B00020;
+  --semantic-neutral: #6B6B6B;
+
+  --semantic-info-bg:    rgba(0, 80, 179, 0.06);
+  --semantic-success-bg: rgba(46, 125, 50, 0.06);
+  --semantic-warn-bg:    rgba(199, 119, 0, 0.06);
+  --semantic-danger-bg:  rgba(176, 0, 32, 0.05);
+  --semantic-neutral-bg: rgba(107, 107, 107, 0.06);
+
+  /* ─── 4. TYPOGRAPHY SCALE ─── */
+  --fs-h1: 24pt;
+  --fs-h2: 17pt;
+  --fs-h3: 13pt;
+  --fs-h4: 11pt;
+  --fs-h5: 9pt;
+  --fs-h6: 10pt;
+  --fs-body: 10.5pt;
+  --fs-code: 9pt;
+  --fs-table: 9pt;
+  --fs-caption: 8.5pt;
+
+  /* ─── 5. SPACING（8px grid）─── */
+  --sp-1: 4px;  --sp-2: 8px;  --sp-3: 12px; --sp-4: 16px;
+  --sp-5: 24px; --sp-6: 32px; --sp-7: 48px; --sp-8: 64px;
+
+  /* ─── 6. LINE / SHADOW ─── */
+  --hairline:    0.5pt solid var(--gray-20);
+  --hairline-md: 0.75pt solid var(--gray-30);
+  --rule:        1pt solid var(--gray-90);
+  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   1 · RESET & BASE
+   ════════════════════════════════════════════════════════════════ */
+
+@page {
+  size: A4 !important;
+  margin: 24mm 20mm 24mm 20mm !important;
+}
+
+* {
+  box-sizing: border-box !important;
+}
+
+html, body {
+  font-family:
+    "Manrope",
+    "Inter Tight",
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    "Noto Sans JP",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif !important;
+  font-size: var(--fs-body) !important;
+  font-weight: 400 !important;
+  line-height: 1.75 !important;
+  color: var(--brand-ink) !important;
+  background: var(--gray-00) !important;
+  letter-spacing: 0.005em !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  -webkit-font-smoothing: antialiased !important;
+  -webkit-print-color-adjust: exact !important;
+  print-color-adjust: exact !important;
+  font-feature-settings: "palt" 1, "kern" 1, "liga" 1, "calt" 1 !important;
+  font-variant-numeric: tabular-nums !important;
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   2 · TYPOGRAPHY  (Headings, Paragraph, Inline)
+   ════════════════════════════════════════════════════════════════ */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family:
+    "Inter Tight",
+    "Manrope",
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    sans-serif !important;
+  color: var(--brand-ink) !important;
+  letter-spacing: -0.015em !important;
+  line-height: 1.25 !important;
+  page-break-after: avoid !important;
+  break-after: avoid !important;
+  page-break-inside: avoid !important;
+}
+
+/* H1 — ドキュメントタイトル：強烈な縦アクセントバー + 太字 */
+h1 {
+  font-size: var(--fs-h1) !important;
+  font-weight: 800 !important;
+  margin: 0 0 var(--sp-5) 0 !important;
+  padding: 0 0 var(--sp-4) 0 !important;
+  border-bottom: var(--rule) !important;
+  position: relative !important;
+  letter-spacing: -0.02em !important;
+}
+h1::before {
+  content: "" !important;
+  display: block !important;
+  width: 64px !important;
+  height: 4px !important;
+  background: var(--brand-primary) !important;
+  margin-bottom: var(--sp-4) !important;
+}
+
+/* H2 — セクション：下罫＋ブランドカラー短バー
+   ★ Auto Page Break: H2 セクションの先頭で必ず改ページする（命令不要） */
+h2 {
+  font-size: var(--fs-h2) !important;
+  font-weight: 700 !important;
+  margin: 0 0 var(--sp-4) 0 !important;
+  padding: 0 0 var(--sp-3) 0 !important;
+  border-bottom: var(--hairline-md) !important;
+  position: relative !important;
+  page-break-before: always !important;
+  break-before: page !important;
+}
+
+/* 最初の H1 直後の H2 のみ改ページしない（タイトル直後にセクション開始したい場合）*/
+h1 + h2,
+.toc + h2,
+.no-page-break + h2,
+h2.no-page-break,
+h2:first-of-type {
+  page-break-before: auto !important;
+  break-before: auto !important;
+  margin-top: var(--sp-7) !important;
+}
+h2::after {
+  content: "" !important;
+  position: absolute !important;
+  bottom: -0.75pt !important;
+  left: 0 !important;
+  width: 40px !important;
+  height: 1.5pt !important;
+  background: var(--brand-primary) !important;
+}
+
+/* H3 — サブセクション：左ボーダー */
+h3 {
+  font-size: var(--fs-h3) !important;
+  font-weight: 700 !important;
+  color: var(--brand-ink) !important;
+  margin: var(--sp-6) 0 var(--sp-3) 0 !important;
+  padding-left: var(--sp-3) !important;
+  border-left: 2.5pt solid var(--brand-primary) !important;
+  line-height: 1.3 !important;
+}
+
+/* H4 — グループ見出し：ブランド色そのまま */
+h4 {
+  font-size: var(--fs-h4) !important;
+  font-weight: 700 !important;
+  color: var(--brand-primary-ink) !important;
+  margin: var(--sp-5) 0 var(--sp-2) 0 !important;
+}
+
+/* H5 — タグ風オーバーライン（Swiss Style 典型） */
+h5 {
+  font-size: var(--fs-h5) !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.16em !important;
+  color: var(--brand-primary) !important;
+  margin: var(--sp-4) 0 var(--sp-2) 0 !important;
+  font-family: "Inter Tight", "Manrope", sans-serif !important;
+}
+
+/* H6 — キャプション系 */
+h6 {
+  font-size: var(--fs-h6) !important;
+  font-weight: 600 !important;
+  color: var(--gray-60) !important;
+  margin: var(--sp-3) 0 var(--sp-2) 0 !important;
+}
+
+/* Paragraph */
+p {
+  margin: 0 0 var(--sp-3) 0 !important;
+  color: var(--brand-ink) !important;
+  line-height: 1.75 !important;
+  text-align: left !important;
+  orphans: 3 !important;
+  widows: 3 !important;
+}
+
+strong, b {
+  font-weight: 700 !important;
+  color: var(--brand-ink) !important;
+}
+
+em, i {
+  font-style: italic !important;
+  color: var(--gray-70) !important;
+}
+
+del, s {
+  color: var(--gray-50) !important;
+  text-decoration: line-through !important;
+}
+
+/* ─── Marker / Highlight ─── */
+/* HTML タグ <mark>...</mark> を使用する（==text== は markdown-it 非対応）*/
+mark,
+.mark {
+  display: inline !important;
+  background-color: rgba(255, 235, 59, 0.55) !important;   /* ハイライター黄色 */
+  background-image: none !important;
+  color: var(--brand-ink) !important;
+  padding: 1px 4px !important;
+  font-weight: 600 !important;
+  border-radius: 2px !important;
+  box-decoration-break: clone !important;
+  -webkit-box-decoration-break: clone !important;
+  line-height: inherit !important;
+}
+
+/* ブランドカラーのマーカー（class 指定）*/
+mark.brand,
+.mark.brand {
+  background-color: rgba(138, 36, 140, 0.22) !important;
+  color: var(--brand-ink) !important;
+}
+
+small, .small {
+  font-size: var(--fs-caption) !important;
+  color: var(--gray-60) !important;
+}
+
+abbr[title] {
+  border-bottom: 0.5pt dotted var(--gray-50) !important;
+  cursor: help !important;
+  text-decoration: none !important;
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   3 · LINKS
+   ════════════════════════════════════════════════════════════════ */
+
+a, a:link, a:visited {
+  color: var(--brand-primary-ink) !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+  border-bottom: 1px solid var(--brand-primary) !important;
+  padding-bottom: 1px !important;
+  word-break: break-word !important;
+  overflow-wrap: anywhere !important;
+}
+
+a:hover {
+  color: var(--brand-primary) !important;
+  border-bottom-color: var(--brand-primary-ink) !important;
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   4 · LISTS  (ul / ol / dl / nested / task-list)
+   ════════════════════════════════════════════════════════════════ */
+
+ul, ol {
+  margin: 0 0 var(--sp-3) 0 !important;
+  padding-left: var(--sp-5) !important;
+  line-height: 1.8 !important;
+  color: var(--brand-ink) !important;
+}
+
+li {
+  margin: var(--sp-1) 0 !important;
+  padding-left: var(--sp-1) !important;
+}
+
+li::marker {
+  color: var(--brand-primary) !important;
+  font-weight: 700 !important;
+}
+
+ol li::marker {
+  font-variant-numeric: tabular-nums !important;
+  color: var(--brand-primary-ink) !important;
+  font-family: "Inter Tight", sans-serif !important;
+}
+
+ul li::marker {
+  content: "▸  " !important;
+  font-size: 0.85em !important;
+}
+
+li > ul, li > ol {
+  margin: var(--sp-1) 0 !important;
+}
+
+/* Nested list — depth 2 marker */
+li > ul li::marker {
+  content: "·  " !important;
+  color: var(--gray-60) !important;
+}
+
+/* GFM task list */
+ul.contains-task-list, .task-list {
+  list-style: none !important;
+  padding-left: var(--sp-3) !important;
+}
+.task-list-item {
+  padding-left: 0 !important;
+}
+input[type="checkbox"] {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  width: 12px !important;
+  height: 12px !important;
+  border: 1pt solid var(--gray-60) !important;
+  border-radius: 2px !important;
+  vertical-align: -1.5px !important;
+  margin-right: var(--sp-2) !important;
+  background: var(--gray-00) !important;
+}
+input[type="checkbox"]:checked {
+  background: var(--brand-primary) !important;
+  border-color: var(--brand-primary) !important;
+  position: relative !important;
+}
+input[type="checkbox"]:checked::after {
+  content: "✓" !important;
+  color: var(--gray-00) !important;
+  font-size: 9px !important;
+  font-weight: 900 !important;
+  position: absolute !important;
+  top: -2px !important;
+  left: 1.5px !important;
+  line-height: 1 !important;
+}
+
+/* Description list */
+dl {
+  margin: 0 0 var(--sp-3) 0 !important;
+}
+dt {
+  font-weight: 700 !important;
+  color: var(--brand-primary-ink) !important;
+  margin-top: var(--sp-3) !important;
+  font-size: 0.95em !important;
+  text-transform: none !important;
+}
+dd {
+  margin: var(--sp-1) 0 var(--sp-2) var(--sp-4) !important;
+  color: var(--gray-80) !important;
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   5 · TABLES — 4辺全枠線がデフォルト (Boxed) + Header 強調
+   ════════════════════════════════════════════════════════════════ */
+
+table {
+  width: 100% !important;
+  table-layout: auto !important;
+  border-collapse: collapse !important;
+  border-spacing: 0 !important;
+  margin: var(--sp-5) 0 var(--sp-6) 0 !important;
+  font-family:
+    "Inter Tight",
+    "Manrope",
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    sans-serif !important;
+  font-size: var(--fs-table) !important;
+  line-height: 1.55 !important;
+  background: var(--gray-00) !important;
+  /* ★ デフォルト = 4 辺すべて罫線 */
+  border: 1pt solid var(--brand-ink) !important;
+  page-break-inside: auto !important;
+  font-variant-numeric: tabular-nums !important;
+}
+
+table thead {
+  display: table-header-group !important;
+}
+
+table thead tr {
+  /* ヘッダ下に強めの仕切り線 */
+  border-bottom: 1.5pt solid var(--brand-ink) !important;
+  background: transparent !important;
+}
+
+/* TH — 強調された見出し：背景色塗り + 太字 + ブランドカラー */
+table th {
+  font-family: "Inter Tight", "Manrope", "Hiragino Kaku Gothic ProN", sans-serif !important;
+  font-weight: 800 !important;
+  font-size: 9pt !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.10em !important;
+  color: var(--gray-00) !important;
+  /* ★ 塗り背景 — ブランドカラーで強調 */
+  background: var(--brand-ink) !important;
+  padding: var(--sp-3) var(--sp-3) !important;
+  text-align: left !important;
+  vertical-align: middle !important;
+  /* ★ TH 間の縦罫もデフォルトで描画 */
+  border: 0.5pt solid var(--gray-70) !important;
+  border-top: none !important;
+  white-space: normal !important;
+  line-height: 1.4 !important;
+  word-break: normal !important;
+  overflow-wrap: anywhere !important;
+  hyphens: auto !important;
+}
+
+/* TH のブランドアクセント帯（上端 2pt） */
+table thead tr:first-child th {
+  box-shadow: inset 0 2pt 0 var(--brand-primary) !important;
+  padding-top: calc(var(--sp-3) + 1pt) !important;
+}
+
+table tbody tr {
+  page-break-inside: avoid !important;
+  background: transparent !important;
+}
+
+/* Zebra-stripe — 偶数行を極薄 */
+table tbody tr:nth-child(even) td {
+  background: var(--gray-05) !important;
+}
+
+/* TD — デフォルトで 4 辺全罫線 */
+table tbody td {
+  padding: var(--sp-3) var(--sp-3) !important;
+  vertical-align: middle !important;
+  color: var(--brand-ink) !important;
+  /* ★ 4辺全罫線 (横:gray-30 / 縦:gray-20) */
+  border: 0.5pt solid var(--gray-20) !important;
+  border-bottom-color: var(--gray-30) !important;
+  font-size: var(--fs-table) !important;
+  line-height: 1.65 !important;
+  /* 長文セルの自動折返し（auto-fit + word-break）*/
+  word-break: normal !important;
+  overflow-wrap: anywhere !important;
+  hyphens: auto !important;
+  line-break: strict !important;
+}
+
+/* ─── アラインメント継承（重要）─── */
+/* GFM 構文 |:---|:---:|---:| が TH/TD 両方の align 属性に反映される */
+table th[align="left"],
+table td[align="left"] {
+  text-align: left !important;
+}
+table th[align="center"],
+table td[align="center"] {
+  text-align: center !important;
+}
+table th[align="right"],
+table td[align="right"] {
+  text-align: right !important;
+  font-variant-numeric: tabular-nums !important;
+}
+
+/* TH align="left" (デフォルト) を本文の vertical align とも揃える */
+table th { vertical-align: middle !important; }
+table td { vertical-align: middle !important; }
+
+/* 第1列強調（ラベル列）— 全行同じブランド薄色で固定（zebra させない）*/
+table tbody td:first-child {
+  font-weight: 600 !important;
+  color: var(--brand-ink) !important;
+  background: var(--brand-tint-08) !important;
+}
+/* zebra 行であっても 1 列目は同じ色を維持 */
+table tbody tr:nth-child(even) td:first-child {
+  background: var(--brand-tint-08) !important;
+}
+table tbody td:first-child strong {
+  color: var(--brand-primary-ink) !important;
+  font-weight: 700 !important;
+}
+
+/* セル内 inline code */
+table td code,
+table th code {
+  font-size: 8.3pt !important;
+  padding: 1px 5px !important;
+  background: var(--brand-tint-08) !important;
+  border: 0.5pt solid var(--brand-tint-22) !important;
+  color: var(--brand-primary-ink) !important;
+  border-radius: 2px !important;
+  font-weight: 500 !important;
+  white-space: nowrap !important;
+}
+table th code {
+  background: rgba(255, 255, 255, 0.18) !important;
+  color: var(--gray-00) !important;
+  border-color: rgba(255, 255, 255, 0.32) !important;
+}
+
+/* ─── テーブル バリエーション ─── */
+
+/* 横罫のみ（Swiss Style ミニマル）— 明示時のみ */
+table.no-borders,
+table.h-lines-only {
+  border-left: none !important;
+  border-right: none !important;
+  border-top: 1pt solid var(--brand-ink) !important;
+  border-bottom: 1pt solid var(--brand-ink) !important;
+}
+table.no-borders td,
+table.no-borders th,
+table.h-lines-only td,
+table.h-lines-only th {
+  border-left: none !important;
+  border-right: none !important;
+}
+table.no-borders tbody td:first-child,
+table.h-lines-only tbody td:first-child {
+  background: transparent !important;
+}
+table.no-borders thead tr:first-child th,
+table.h-lines-only thead tr:first-child th {
+  box-shadow: none !important;
+}
+table.no-borders th,
+table.h-lines-only th {
+  background: transparent !important;
+  color: var(--brand-ink) !important;
+  border-bottom: 1pt solid var(--brand-ink) !important;
+}
+
+/* コンパクト（長文表用）*/
+table.compact {
+  font-size: 8.5pt !important;
+}
+table.compact td,
+table.compact th {
+  padding: var(--sp-2) var(--sp-2) !important;
+}
+
+/* 日本語 keep-all 版（単語途中折返し回避）*/
+table.jp td,
+table.jp th {
+  word-break: keep-all !important;
+  overflow-wrap: break-word !important;
+  hyphens: none !important;
+}
+
+/* 旧クラス名の互換維持（with-v-lines はもうデフォルトなので no-op）*/
+table.with-v-lines { /* keep for backward compat */ }
+
+/* テーブルラッパー（オーバーフロー対応） */
+.table-wrap {
+  overflow-x: auto !important;
+  margin: var(--sp-5) 0 var(--sp-6) 0 !important;
+}
+.table-wrap > table {
+  margin: 0 !important;
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   6 · CODE  (inline / block / filename header)
+   ════════════════════════════════════════════════════════════════ */
+
+code {
+  font-family:
+    "JetBrains Mono",
+    "Cascadia Code",
+    "SF Mono",
+    "Consolas",
+    "Menlo",
+    monospace !important;
+  font-size: 0.88em !important;
+  font-weight: 500 !important;
+  color: var(--brand-primary-ink) !important;
+  background: var(--brand-tint-08) !important;
+  padding: 2px 6px !important;
+  border-radius: 2px !important;
+  border: 0.5pt solid var(--brand-tint-22) !important;
+  word-break: break-word !important;
+  overflow-wrap: anywhere !important;
+  white-space: nowrap !important;
+}
+
+pre {
+  font-family:
+    "JetBrains Mono",
+    "Cascadia Code",
+    "SF Mono",
+    "Consolas",
+    "Menlo",
+    monospace !important;
+  font-size: var(--fs-code) !important;
+  font-weight: 400 !important;
+  line-height: 1.62 !important;
+  color: var(--gray-20) !important;
+  background: #1A1A1F !important;
+  margin: var(--sp-5) 0 !important;
+  padding: var(--sp-4) var(--sp-5) !important;
+  border-radius: 4px !important;
+  border: 1px solid var(--brand-ink) !important;
+  overflow-x: auto !important;
+  white-space: pre-wrap !important;
+  word-break: break-all !important;
+  page-break-inside: avoid !important;
+  box-shadow: var(--shadow-soft) !important;
+  position: relative !important;
+}
+
+pre code {
+  background: transparent !important;
+  border: none !important;
+  color: var(--gray-20) !important;
+  padding: 0 !important;
+  font-size: inherit !important;
+  white-space: inherit !important;
+  word-break: inherit !important;
+  font-weight: 400 !important;
+}
+
+/* ファイル名ヘッダー（<pre data-filename="..."><code>...</code></pre>） */
+pre[data-filename]::before {
+  content: attr(data-filename) !important;
+  display: block !important;
+  font-family: "JetBrains Mono", "Consolas", monospace !important;
+  font-size: 8pt !important;
+  color: var(--gray-40) !important;
+  background: rgba(255, 255, 255, 0.04) !important;
+  padding: 4px var(--sp-3) !important;
+  margin: calc(var(--sp-4) * -1) calc(var(--sp-5) * -1) var(--sp-3) calc(var(--sp-5) * -1) !important;
+  border-bottom: 0.5pt solid rgba(255, 255, 255, 0.08) !important;
+  letter-spacing: 0.04em !important;
+}
+
+/* Syntax — One Dark Pro 派生 */
+.hljs-keyword,     .token.keyword,
+.token.boolean    { color: #C678DD !important; font-weight: 500 !important; }
+.hljs-string,      .token.string     { color: #98C379 !important; }
+.hljs-number,      .token.number     { color: #D19A66 !important; }
+.hljs-comment,     .token.comment    { color: #5C6370 !important; font-style: italic !important; }
+.hljs-function,    .token.function   { color: #61AFEF !important; }
+.hljs-attr,        .token.attr-name  { color: #E06C75 !important; }
+.hljs-tag,         .token.tag        { color: #E06C75 !important; }
+.hljs-type,        .token.class-name { color: #E5C07B !important; }
+.hljs-built_in,    .token.builtin    { color: #56B6C2 !important; }
+.hljs-variable,    .token.variable   { color: #E06C75 !important; }
+.hljs-operator,    .token.operator   { color: #56B6C2 !important; }
+.hljs-punctuation, .token.punctuation{ color: var(--gray-30) !important; }
+
+
+/* ════════════════════════════════════════════════════════════════
+   7 · BLOCKQUOTE & CALLOUT (GFM Alerts compatible)
+   ════════════════════════════════════════════════════════════════ */
+
+blockquote {
+  margin: var(--sp-5) 0 !important;
+  padding: var(--sp-3) var(--sp-4) var(--sp-3) var(--sp-5) !important;
+  background: var(--gray-05) !important;
+  border-left: 3pt solid var(--brand-primary) !important;
+  border-top: none !important;
+  border-right: none !important;
+  border-bottom: none !important;
+  border-radius: 0 4px 4px 0 !important;
+  color: var(--gray-80) !important;
+  font-size: 10pt !important;
+  line-height: 1.75 !important;
+  font-style: normal !important;
+  page-break-inside: avoid !important;
+}
+
+blockquote p {
+  margin: 0 0 var(--sp-2) 0 !important;
+  color: var(--gray-80) !important;
+}
+blockquote p:last-child {
+  margin-bottom: 0 !important;
+}
+blockquote strong {
+  color: var(--brand-primary-ink) !important;
+}
+
+/* ─── Callout / Admonition (HTML class & GFM Alerts) ─── */
+
+.callout,
+blockquote.note, blockquote.tip, blockquote.info,
+blockquote.warning, blockquote.danger {
+  margin: var(--sp-5) 0 !important;
+  padding: var(--sp-3) var(--sp-4) var(--sp-3) var(--sp-5) !important;
+  border-left: 3pt solid var(--semantic-neutral) !important;
+  background: var(--semantic-neutral-bg) !important;
+  border-radius: 0 4px 4px 0 !important;
+  position: relative !important;
+  page-break-inside: avoid !important;
+  font-size: 10pt !important;
+  color: var(--gray-80) !important;
+}
+
+.callout::before,
+blockquote.note::before, blockquote.tip::before, blockquote.info::before,
+blockquote.warning::before, blockquote.danger::before {
+  display: inline-block !important;
+  font-family: "Inter Tight", "Manrope", sans-serif !important;
+  font-size: 7.5pt !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.14em !important;
+  padding: 2px 8px !important;
+  color: var(--gray-00) !important;
+  background: var(--semantic-neutral) !important;
+  border-radius: 2px !important;
+  margin-bottom: var(--sp-2) !important;
+}
+
+.callout p,
+blockquote.note p, blockquote.tip p, blockquote.info p,
+blockquote.warning p, blockquote.danger p {
+  margin: 0 0 var(--sp-2) 0 !important;
+  color: var(--gray-80) !important;
+}
+.callout p:last-child,
+blockquote.note p:last-child, blockquote.tip p:last-child, blockquote.info p:last-child,
+blockquote.warning p:last-child, blockquote.danger p:last-child {
+  margin-bottom: 0 !important;
+}
+
+/* NOTE */
+.callout.callout-note, blockquote.note {
+  border-left-color: var(--semantic-info) !important;
+  background: var(--semantic-info-bg) !important;
+}
+.callout.callout-note::before, blockquote.note::before {
+  content: "NOTE" !important;
+  background: var(--semantic-info) !important;
+}
+
+/* TIP / SUCCESS */
+.callout.callout-tip, blockquote.tip {
+  border-left-color: var(--semantic-success) !important;
+  background: var(--semantic-success-bg) !important;
+}
+.callout.callout-tip::before, blockquote.tip::before {
+  content: "TIP" !important;
+  background: var(--semantic-success) !important;
+}
+
+/* INFO */
+.callout.callout-info, blockquote.info {
+  border-left-color: var(--semantic-info) !important;
+  background: var(--semantic-info-bg) !important;
+}
+.callout.callout-info::before, blockquote.info::before {
+  content: "INFO" !important;
+  background: var(--semantic-info) !important;
+}
+
+/* WARNING */
+.callout.callout-warning, blockquote.warning {
+  border-left-color: var(--semantic-warn) !important;
+  background: var(--semantic-warn-bg) !important;
+}
+.callout.callout-warning::before, blockquote.warning::before {
+  content: "WARNING" !important;
+  background: var(--semantic-warn) !important;
+}
+
+/* DANGER / CAUTION */
+.callout.callout-danger, blockquote.danger {
+  border-left-color: var(--semantic-danger) !important;
+  background: var(--semantic-danger-bg) !important;
+}
+.callout.callout-danger::before, blockquote.danger::before {
+  content: "DANGER" !important;
+  background: var(--semantic-danger) !important;
+}
+
+/* GFM Alerts compatibility (>[!NOTE] 等 が <blockquote><p>[!NOTE]</p>... に変換される場合の補助) */
+blockquote p:first-child:has(+ p) strong:first-child {
+  color: var(--brand-primary-ink) !important;
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   8 · SHAPE BOX  (装飾ボックス 4 バリエーション)
+   ════════════════════════════════════════════════════════════════ */
+
+.shape-box {
+  margin: var(--sp-5) 0 !important;
+  padding: var(--sp-4) var(--sp-5) !important;
+  border: 0.75pt solid var(--gray-30) !important;
+  border-radius: 4px !important;
+  background: var(--gray-00) !important;
+  page-break-inside: avoid !important;
+}
+
+.shape-box > *:first-child { margin-top: 0 !important; }
+.shape-box > *:last-child { margin-bottom: 0 !important; }
+
+/* 塗りつぶし背景 */
+.shape-box.shape-filled {
+  background: var(--gray-05) !important;
+  border-color: var(--gray-20) !important;
+}
+
+/* 太枠強調 */
+.shape-box.shape-outline {
+  border: 1.5pt solid var(--brand-ink) !important;
+  border-radius: 0 !important;
+}
+
+/* ブランドカラー強調（プロモボックス） */
+.shape-box.shape-brand {
+  background: var(--brand-tint-08) !important;
+  border: 1pt solid var(--brand-tint-22) !important;
+  border-left: 4pt solid var(--brand-primary) !important;
+  border-radius: 0 4px 4px 0 !important;
+}
+.shape-box.shape-brand strong {
+  color: var(--brand-primary-ink) !important;
+}
+
+/* ヘッダ付きボックス (data-title 属性) */
+.shape-box[data-title]::before {
+  content: attr(data-title) !important;
+  display: block !important;
+  font-family: "Inter Tight", "Manrope", sans-serif !important;
+  font-size: 8pt !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.14em !important;
+  color: var(--brand-primary) !important;
+  margin-bottom: var(--sp-2) !important;
+  padding-bottom: var(--sp-2) !important;
+  border-bottom: 0.5pt solid var(--gray-20) !important;
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   9 · DIVIDER  (hr バリエーション)
+   ════════════════════════════════════════════════════════════════ */
+
+hr {
+  border: none !important;
+  height: 0.5pt !important;
+  background: var(--gray-20) !important;
+  margin: var(--sp-7) auto !important;
+  width: 100% !important;
+}
+
+hr.divider-double {
+  height: 4pt !important;
+  background: transparent !important;
+  border-top: 0.5pt solid var(--gray-30) !important;
+  border-bottom: 0.5pt solid var(--gray-30) !important;
+}
+
+/* ─── Dot Divider Patterns ─── */
+
+/* A: 中央 3 ドット（控えめ）— default .divider-dot */
+hr.divider-dot {
+  background: transparent !important;
+  border: none !important;
+  height: 12pt !important;
+  text-align: center !important;
+  position: relative !important;
+}
+hr.divider-dot::after {
+  content: "·  ·  ·" !important;
+  display: block !important;
+  font-family: "Manrope", sans-serif !important;
+  font-size: 14pt !important;
+  letter-spacing: 0.6em !important;
+  color: var(--gray-40) !important;
+  line-height: 12pt !important;
+}
+
+/* B: 横一面ドット線（点線フル幅）*/
+hr.divider-dot-line {
+  background: transparent !important;
+  border: none !important;
+  border-top: 0.75pt dotted var(--gray-50) !important;
+  height: 0 !important;
+  margin: var(--sp-6) auto !important;
+}
+
+/* C: 中央 5 ドット（横長）*/
+hr.divider-dot-5 {
+  background: transparent !important;
+  border: none !important;
+  height: 14pt !important;
+  text-align: center !important;
+  position: relative !important;
+}
+hr.divider-dot-5::after {
+  content: "·  ·  ·  ·  ·" !important;
+  display: block !important;
+  font-family: "Manrope", sans-serif !important;
+  font-size: 16pt !important;
+  letter-spacing: 0.7em !important;
+  color: var(--gray-40) !important;
+  line-height: 14pt !important;
+}
+
+/* D: ブランドドット（マゼンタ）*/
+hr.divider-dot-brand {
+  background: transparent !important;
+  border: none !important;
+  height: 12pt !important;
+  text-align: center !important;
+  position: relative !important;
+}
+hr.divider-dot-brand::after {
+  content: "·  ·  ·" !important;
+  display: block !important;
+  font-family: "Manrope", sans-serif !important;
+  font-size: 16pt !important;
+  letter-spacing: 0.7em !important;
+  color: var(--brand-primary) !important;
+  font-weight: 800 !important;
+  line-height: 12pt !important;
+}
+
+/* E: ダッシュ + ドット（モールス風）*/
+hr.divider-morse {
+  background: transparent !important;
+  border: none !important;
+  height: 12pt !important;
+  text-align: center !important;
+}
+hr.divider-morse::after {
+  content: "—  ·  —  ·  —" !important;
+  display: block !important;
+  font-family: "Manrope", sans-serif !important;
+  font-size: 11pt !important;
+  letter-spacing: 0.4em !important;
+  color: var(--gray-50) !important;
+  line-height: 12pt !important;
+}
+
+/* F: 細かい dense ドット（横一面、密度高め）*/
+hr.divider-dot-dense {
+  background: transparent !important;
+  border: none !important;
+  height: 8pt !important;
+  text-align: center !important;
+  overflow: hidden !important;
+}
+hr.divider-dot-dense::after {
+  content: "· · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · ·" !important;
+  display: block !important;
+  font-family: "Manrope", sans-serif !important;
+  font-size: 12pt !important;
+  letter-spacing: 0.15em !important;
+  color: var(--gray-40) !important;
+  line-height: 8pt !important;
+  white-space: nowrap !important;
+}
+
+hr.divider-brand {
+  background: transparent !important;
+  border: none !important;
+  height: 8pt !important;
+  text-align: center !important;
+  position: relative !important;
+  margin: var(--sp-6) auto !important;
+}
+hr.divider-brand::after {
+  content: "" !important;
+  display: inline-block !important;
+  width: 8pt !important;
+  height: 8pt !important;
+  background: var(--brand-primary) !important;
+  transform: rotate(45deg) !important;
+  vertical-align: middle !important;
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   10 · INDEX / TOC  (ドットリーダー付き目次)
+   ════════════════════════════════════════════════════════════════ */
+
+.toc {
+  margin: var(--sp-6) 0 var(--sp-7) 0 !important;
+  padding: var(--sp-5) 0 !important;
+  border-top: 1pt solid var(--brand-ink) !important;
+  border-bottom: 1pt solid var(--brand-ink) !important;
+  page-break-inside: avoid !important;
+}
+
+.toc h2,
+.toc > .toc-title {
+  font-family: "Inter Tight", "Manrope", sans-serif !important;
+  font-size: 9pt !important;
+  font-weight: 800 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.20em !important;
+  color: var(--brand-primary) !important;
+  margin: 0 0 var(--sp-4) 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
+.toc h2::after,
+.toc h2::before { content: none !important; display: none !important; }
+
+.toc ol,
+.toc ul {
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  counter-reset: toc-counter !important;
+}
+
+.toc li {
+  display: flex !important;
+  align-items: baseline !important;
+  margin: 0 !important;
+  padding: var(--sp-2) 0 !important;
+  border-bottom: 0.5pt dotted var(--gray-30) !important;
+  font-size: 10pt !important;
+  line-height: 1.4 !important;
+  counter-increment: toc-counter !important;
+}
+.toc li:last-child {
+  border-bottom: none !important;
+}
+
+.toc ol > li::before {
+  content: counter(toc-counter, decimal-leading-zero) !important;
+  font-family: "Inter Tight", monospace !important;
+  font-variant-numeric: tabular-nums !important;
+  font-size: 8.5pt !important;
+  font-weight: 600 !important;
+  color: var(--brand-primary) !important;
+  margin-right: var(--sp-3) !important;
+  letter-spacing: 0.05em !important;
+  flex-shrink: 0 !important;
+}
+
+.toc li > a,
+.toc li a:link,
+.toc li a:visited,
+.toc li > .toc-label {
+  color: var(--brand-ink) !important;
+  border-bottom: none !important;
+  font-weight: 500 !important;
+  padding-bottom: 0 !important;
+  text-decoration: none !important;
+  flex-shrink: 0 !important;
+  cursor: pointer !important;
+}
+.toc li a:hover {
+  color: var(--brand-primary) !important;
+  border-bottom: none !important;
+}
+
+.toc li > .dots,
+.toc li::after {
+  flex: 1 1 auto !important;
+  align-self: center !important;
+  border-bottom: 0.75pt dotted var(--gray-50) !important;
+  margin: 0 var(--sp-3) !important;
+  transform: translateY(-2px) !important;
+  min-width: 120pt !important;     /* ★ ドット帯の最小幅を確保 */
+  height: 0 !important;
+  flex-grow: 99 !important;        /* ★ 文字とページ番号より大きく伸びる */
+}
+
+.toc li > .page,
+.toc li > a + .page {
+  font-family: "Inter Tight", monospace !important;
+  font-variant-numeric: tabular-nums !important;
+  font-size: 9.5pt !important;
+  font-weight: 600 !important;
+  color: var(--brand-primary) !important;
+  flex-shrink: 0 !important;
+  min-width: 24px !important;
+  text-align: right !important;
+}
+
+/* ネスト TOC (li > ol) */
+.toc li ol,
+.toc li ul {
+  flex-basis: 100% !important;
+  margin-left: var(--sp-5) !important;
+  margin-top: var(--sp-2) !important;
+}
+.toc li ol li,
+.toc li ul li {
+  font-size: 9pt !important;
+  color: var(--gray-70) !important;
+  border-bottom: none !important;
+  padding: 2px 0 !important;
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   11 · IMAGE & FIGURE
+   ════════════════════════════════════════════════════════════════ */
+
+img {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block !important;
+  margin: var(--sp-5) auto !important;
+  border-radius: 4px !important;
+  page-break-inside: avoid !important;
+}
+
+figure {
+  margin: var(--sp-5) 0 !important;
+  padding: 0 !important;
+  text-align: center !important;
+  page-break-inside: avoid !important;
+}
+
+figure img {
+  margin: 0 auto var(--sp-2) auto !important;
+  border: 0.5pt solid var(--gray-20) !important;
+}
+
+figcaption {
+  font-size: var(--fs-caption) !important;
+  color: var(--gray-60) !important;
+  font-style: normal !important;
+  letter-spacing: 0.04em !important;
+  margin-top: var(--sp-2) !important;
+  text-align: center !important;
+  font-family: "Inter Tight", "Manrope", sans-serif !important;
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   12 · KBD
+   ════════════════════════════════════════════════════════════════ */
+
+kbd {
+  font-family: "JetBrains Mono", "Consolas", monospace !important;
+  font-size: 0.82em !important;
+  font-weight: 600 !important;
+  color: var(--brand-ink) !important;
+  background: linear-gradient(180deg, var(--gray-00) 0%, var(--gray-10) 100%) !important;
+  border: 0.75pt solid var(--gray-40) !important;
+  border-bottom-width: 1.5pt !important;
+  border-radius: 3px !important;
+  padding: 1px 6px !important;
+  white-space: nowrap !important;
+  vertical-align: 1px !important;
+  box-shadow: 0 1px 0 var(--gray-20) !important;
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   13 · UTILITIES
+   ════════════════════════════════════════════════════════════════ */
+
+.page-break,
+div[style*="page-break-after"] {
+  page-break-after: always !important;
+  break-after: page !important;
+  height: 0 !important;
+  visibility: hidden !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.no-break {
+  page-break-inside: avoid !important;
+  break-inside: avoid !important;
+}
+
+.muted {
+  color: var(--gray-50) !important;
+}
+
+.brand {
+  color: var(--brand-primary) !important;
+}
+
+.brand-bg {
+  background: var(--brand-tint-08) !important;
+  padding: 1px 6px !important;
+  border-radius: 2px !important;
+}
+
+.center  { text-align: center !important; }
+.right   { text-align: right !important; }
+
+.caption {
+  font-size: var(--fs-caption) !important;
+  color: var(--gray-60) !important;
+  letter-spacing: 0.04em !important;
+  font-family: "Inter Tight", "Manrope", sans-serif !important;
+}
+
+/* タグ風ラベル */
+.tag {
+  display: inline-block !important;
+  font-family: "Inter Tight", "Manrope", sans-serif !important;
+  font-size: 7.5pt !important;
+  font-weight: 700 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.14em !important;
+  padding: 2px 8px !important;
+  background: var(--brand-tint-08) !important;
+  color: var(--brand-primary-ink) !important;
+  border: 0.5pt solid var(--brand-tint-22) !important;
+  border-radius: 2px !important;
+  vertical-align: 1px !important;
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   14 · PRINT FINE-TUNING
+   ════════════════════════════════════════════════════════════════ */
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  body {
+    background: var(--gray-00) !important;
+  }
+
+  h1, h2, h3, h4 {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+  }
+
+  p, li {
+    orphans: 3 !important;
+    widows: 3 !important;
+  }
+
+  table, pre, blockquote, img,
+  .callout, .shape-box, .toc, figure {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  tr {
+    page-break-inside: avoid !important;
+  }
+
+  /* リンクの URL 表示は無効化（PDF では青下線のみ）*/
+  a[href]::after { content: none !important; }
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   END  ·  v3.0.0  ·  Swiss Modern Minimal
+   ════════════════════════════════════════════════════════════════ */
