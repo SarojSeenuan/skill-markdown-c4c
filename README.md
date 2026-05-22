@@ -92,13 +92,13 @@ CSS 変数 3 行を差し替えれば、別ブランドへの転用も可能。 
 <table>
 <tr>
 <th align="center" width="33%">BEFORE — Default</th>
-<th align="center" width="33%">BEFORE — Default (alt)</th>
 <th align="center" width="33%">AFTER — markdown-c4c v3.4</th>
+<th align="center" width="33%">AFTER — markdown-c4c v3.4 (alt)</th>
 </tr>
 <tr>
-<td><img src="docs/screenshots/case-study/01-before-default.png" alt="Before 1"/></td>
-<td><img src="docs/screenshots/case-study/02-before-default-alt.png" alt="Before 2"/></td>
-<td><img src="docs/screenshots/case-study/03-after-c4c.png" alt="After"/></td>
+<td><img src="docs/screenshots/case-study/01-before-default.png" alt="Before — Default Markdown PDF"/></td>
+<td><img src="docs/screenshots/case-study/03-after-c4c.png" alt="After — markdown-c4c v3.4"/></td>
+<td><img src="docs/screenshots/case-study/02-after-c4c-alt.png" alt="After — markdown-c4c v3.4 (alt)"/></td>
 </tr>
 </table>
 
