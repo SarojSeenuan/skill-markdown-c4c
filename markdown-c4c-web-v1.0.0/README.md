@@ -2,11 +2,13 @@
 <title>markdown-c4c-web v1.0.0 配布パッケージ</title>
 </head>
 
+<p class="center"><img src="assets/c4c-logo.png" alt="C for 4C — 株式会社C4C" width="120" height="120"></p>
+
 # markdown-c4c-web v1.0.0
 
 <div class="caption">配布元: 株式会社C4C / Saroj Seenuan (Ken)　·　Version: v1.0.0　·　Date: 2026-05-22</div>
 
-Claude Web の無料アカウントと、お手元の VS Code だけで、株式会社C4C ブランドの **Swiss Modern v3.0** PDF ドキュメントが作れる配布パッケージ。
+Claude Web の無料アカウントと、お手元の VS Code だけで、株式会社C4C ブランドの **Swiss Modern v3.4** PDF ドキュメントが作れる配布パッケージ。
 
 <nav class="toc toc-no-page">
   <h2>Index</h2>

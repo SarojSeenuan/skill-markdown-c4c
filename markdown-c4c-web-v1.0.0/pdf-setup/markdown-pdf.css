@@ -2413,13 +2413,20 @@ div[style*="page-break-after"] {
 
 
 /* ════════════════════════════════════════════════════════════════
-   END  ·  v3.3.1  ·  Swiss Modern Minimal
-   v3.3.1 改善 (UI/UX 刷新):
-   - API params table: セル padding 拡大、最初/最後の列の外側 padding ゼロで枠線とのマージン確保
-   - API params Required: 赤ドット + テキストの GitHub 風表示
-   - API params: 区切り線を破線 (dashed) に変更、視覚的な軽さを実現
-   - API status: 左バーを完全廃止、背景 tint + 文字色のみで表現
-     (GitHub Primer Label 風、AI 臭いデザインを排除)
+   END  ·  v3.4.0  ·  Swiss Modern Minimal
+   v3.4.0 リリースまとめ:
+   - API Blueprint コンポーネント (REST API 仕様書) 追加
+     · HTTP method badge 7 色 / params 表 / status / example
+   - API params table 余白修正 (NAME 列の枠線密着を解消)
+   - API status を GitHub Primer 風 Label に刷新 (左バー廃止、AI 臭排除)
+   - Pricing Card padding/幅拡大、角丸 + 軽い影
+   - Stat Card 刷新 (縦バーアクセント + chevron + 8 accent 色)
+   - Bar Chart 縦バージョン (.bar-chart-v) 新規
+   - Line Graph (X/Y) 新規 (SVG ベース実線 + 破線)
+   - Donut Chart 削除
+   - Timeline active/done の線の太さを 2pt に統一
+   - Pull Quote 引用符サイズ 56pt → 28pt
+   - Callout: 「注意：」「重要：」(コロン付き日本語ラベル)
    v3.3 追加:
    - API Blueprint (.api-endpoint): REST API ドキュメント用
      · HTTP method badge (GET/POST/PUT/PATCH/DELETE/HEAD/OPTIONS) 色分け
