@@ -5,6 +5,49 @@ All notable changes to **skill-markdown-c4c** will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.5.0] — 2026-05-23
+
+### Added
+- **ZIP ビルドスクリプト**（`scripts/build-zip.ps1` / `scripts/build-zip.sh`）
+  - Anthropic skill validator が必須とする forward slash `/` セパレータで ZIP を生成
+  - skill name と一致するルートフォルダ `markdown-c4c/` を強制
+  - SKILL.md frontmatter から version を読み取り、出力名を自動設定
+  - 生成後にエントリ名のバックスラッシュ / ASCII 違反を自己検証
+- **表紙テンプレート（cover-page）** — ロゴ + ヘアライン + タイトル + サブタイトル + メタ表 + フッタ
+- **締めページ 4 パターン（closing-page）**
+  - パターン①: C4C クレド + お礼
+  - パターン②: CTA（行動喚起）
+  - パターン③: 連絡先骨組み
+  - パターン④: ビジュアル + 名言
+- **CSS 新規クラス**（`assets/markdown-pdf.css` 末尾に追加）
+  - `.cover-page` / `.cover-logo` / `.cover-divider` / `.cover-title` / `.cover-subtitle` / `.cover-meta` / `.cover-footer`
+  - `.closing-page` / `.closing-message` / `.closing-cta` / `.closing-contact` / `.closing-visual`
+- **SKILL.md 自己充足型リライト**（v3.0 → v3.5.0）
+  - コンポーネント完全例コード集（14 種類すべて表 + コード例）
+  - ドキュメント種別テンプレート 5 種（提案書 / 仕様書 / 設計書 / 工数見積書 / README）
+  - 表紙テンプレート + 締めページ 4 パターンを内蔵
+  - version bump 義務ルール（SKILL.md 編集時の自動バージョン更新）
+- `package.json` に `build:zip` script を追加（OS 判定で PowerShell / Bash を切替）
+- `pdf-setup/README-PDF-SETUP.md` を Windows / macOS / Linux 3 OS 対応に書き直し
+- `pdf-setup/how-to-export.md` を 3 OS ショートカット併記に書き直し
+- `pdf-setup/settings.json.sample` に OS 別パスのコメントを追記
+
+### Changed
+- **フッタ運用を統一** — フッタ左は空のまま、バージョンは Markdown 本文の caption 行で動的指定
+- **OSS 化対応** — 個人情報を完全除去
+  - `author` を `"株式会社C4C"` に統一（個人名併記を削除）
+  - LICENSE の著作権者を `株式会社C4C` に統一
+  - 個人 GitHub URL / git clone URL を `<YOUR-REPO>` プレースホルダに変更
+  - `~/.claude/...` などの個人パス参照を相対パス（`assets/...` 等）に変更
+  - サンプル人物名（Saroj Seenuan / 田中 / 山田 / 佐藤 / 鈴木）を `○○ ○○` プレースホルダに変更
+- `jp-fix-checklist.md` を 7 項目 → 8 項目に拡張（句読点ルール統合）+ 個人参照削除
+- CSS 内部バージョンを v3.0.1 → v3.5.0 に bump
+
+### Fixed
+- 旧 Web ZIP がアップロード時に「invalid characters」エラーになる問題を解消
+  - 原因: `Compress-Archive` がエントリパスにバックスラッシュ `\` を出力していた
+  - 対策: `System.IO.Compression.ZipFile` で `/` を明示構築するスクリプトに置き換え
+
 ## [3.0.1] — 2026-05-21
 
 ### Fixed

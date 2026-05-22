@@ -1,8 +1,8 @@
 /* ╔════════════════════════════════════════════════════════════════╗
    ║   M A R K D O W N - P D F   ·   D E S I G N   S Y S T E M     ║
-   ║   v3.0.1 — Swiss Modern Minimal                                ║
-   ║   Author: Ken (Saroj Seenuan)                                  ║
-   ║   Updated: 2026-05-21                                          ║
+   ║   v3.5.0 — Swiss Modern Minimal                                ║
+   ║   Author: 株式会社C4C                                          ║
+   ║   Updated: 2026-05-23                                          ║
    ║   Target: VSCode Markdown PDF extension (yzane.markdown-pdf)   ║
    ║                                                                ║
    ║   BRAND CORE                                                   ║
@@ -2444,4 +2444,266 @@ div[style*="page-break-after"] {
    - Donut Chart: 削除
    - Pricing: padding/幅拡大、角丸 + 軽い影
    - Callout: 「注意：」「重要：」（コロン付き）
+   v3.5 追加:
+   - Cover Page (.cover-page): 表紙テンプレート
+     · ロゴ + ヘアライン + タイトル + サブタイトル + メタ表 + フッタ
+   - Closing Page (.closing-page) 4 種類:
+     · .closing-message  C4C メインメッセージ + お礼
+     · .closing-cta      行動喚起（外部リンク）
+     · .closing-contact  連絡先骨組み
+     · .closing-visual   ビジュアル + 名言
    ════════════════════════════════════════════════════════════════ */
+
+
+/* ════════════════════════════════════════════════════════════════
+   15 · COVER PAGE  (v3.5)
+   ════════════════════════════════════════════════════════════════ */
+
+.cover-page {
+  min-height: 240mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 30mm 12mm;
+  page-break-after: always;
+  break-after: page;
+}
+
+.cover-page .cover-logo {
+  margin-bottom: 14mm;
+}
+
+.cover-page .cover-logo img {
+  display: inline-block;
+  width: auto;
+  max-height: 28mm;
+}
+
+.cover-page .cover-divider {
+  width: 60mm;
+  border: none;
+  border-top: 0.75pt solid var(--brand-primary);
+  margin: 8mm auto;
+  background: transparent;
+  height: 0;
+}
+
+.cover-page .cover-title {
+  font-family: 'Inter Tight', 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 32pt;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--brand-ink);
+  margin: 6mm 0 3mm 0;
+  padding: 0;
+  border: none;
+}
+
+.cover-page .cover-subtitle {
+  font-family: 'Manrope', sans-serif;
+  font-weight: 400;
+  font-size: 12pt;
+  line-height: 1.4;
+  color: var(--gray-60);
+  letter-spacing: 0.02em;
+  margin: 0 0 6mm 0;
+  max-width: 140mm;
+}
+
+.cover-page table.cover-meta {
+  margin: 8mm auto 0 auto;
+  border: none;
+  border-top: 0.5pt solid var(--gray-30);
+  border-bottom: 0.5pt solid var(--gray-30);
+  border-collapse: collapse;
+  width: auto;
+  min-width: 110mm;
+  background: transparent;
+}
+
+.cover-page table.cover-meta th,
+.cover-page table.cover-meta td {
+  border: none;
+  padding: 2.6mm 6mm;
+  font-size: 9pt;
+  line-height: 1.4;
+  background: transparent;
+}
+
+.cover-page table.cover-meta th {
+  font-family: 'Inter Tight', 'Manrope', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 7.5pt;
+  font-weight: 700;
+  color: var(--brand-primary);
+  text-align: left;
+  white-space: nowrap;
+  width: 30mm;
+}
+
+.cover-page table.cover-meta td {
+  color: var(--brand-ink);
+  text-align: left;
+}
+
+.cover-page table.cover-meta tr + tr th,
+.cover-page table.cover-meta tr + tr td {
+  border-top: 0.5pt dotted var(--gray-30);
+}
+
+.cover-page .cover-footer {
+  margin-top: 14mm;
+  font-size: 8pt;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+
+/* ════════════════════════════════════════════════════════════════
+   16 · CLOSING PAGE  (v3.5)
+   ════════════════════════════════════════════════════════════════ */
+
+.closing-page {
+  min-height: 200mm;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 30mm 16mm;
+  page-break-before: always;
+  break-before: page;
+}
+
+.closing-page .divider-brand {
+  margin-bottom: 12mm;
+}
+
+/* — Pattern 1: C4C credo + thanks — */
+.closing-message .closing-thanks {
+  font-family: 'Manrope', sans-serif;
+  font-size: 11pt;
+  color: var(--gray-60);
+  letter-spacing: 0.04em;
+  margin: 0 0 10mm 0;
+}
+
+.closing-message .closing-credo {
+  font-family: 'Inter Tight', 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 22pt;
+  line-height: 1.5;
+  color: var(--brand-primary);
+  margin: 0 0 14mm 0;
+  letter-spacing: -0.005em;
+}
+
+.closing-message .closing-org {
+  font-size: 8.5pt;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gray-50);
+}
+
+/* — Pattern 2: CTA — */
+.closing-cta .closing-cta-title {
+  font-family: 'Inter Tight', 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 22pt;
+  color: var(--brand-ink);
+  margin: 0 0 6mm 0;
+  border: none;
+  padding: 0;
+  page-break-before: avoid;
+  break-before: avoid;
+}
+
+.closing-cta .closing-cta-body {
+  font-size: 11pt;
+  line-height: 1.7;
+  color: var(--gray-70);
+  margin: 0 0 10mm 0;
+  max-width: 130mm;
+}
+
+.closing-cta .closing-cta-button {
+  margin: 0;
+}
+
+.closing-cta .closing-cta-button a {
+  display: inline-block;
+  padding: 4mm 10mm;
+  font-family: 'Inter Tight', 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 11pt;
+  letter-spacing: 0.06em;
+  color: #FFFFFF !important;
+  background: var(--brand-primary);
+  border: none;
+  border-radius: 1.2mm;
+  text-decoration: none;
+}
+
+/* — Pattern 3: Contact — */
+.closing-contact h2 {
+  font-family: 'Inter Tight', 'Manrope', sans-serif;
+  font-weight: 800;
+  font-size: 18pt;
+  color: var(--brand-ink);
+  margin: 0 0 8mm 0;
+  border: none;
+  padding: 0;
+  page-break-before: avoid;
+  break-before: avoid;
+}
+
+.closing-contact dl {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 3mm 8mm;
+  text-align: left;
+  margin: 0 auto;
+  max-width: 130mm;
+  font-size: 10pt;
+}
+
+.closing-contact dt {
+  font-family: 'Inter Tight', 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 8pt;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brand-primary);
+  align-self: center;
+}
+
+.closing-contact dd {
+  margin: 0;
+  color: var(--brand-ink);
+  align-self: center;
+}
+
+/* — Pattern 4: Visual — */
+.closing-visual figure {
+  margin: 0;
+  max-width: 150mm;
+}
+
+.closing-visual figure img {
+  max-width: 100%;
+  height: auto;
+}
+
+.closing-visual figcaption {
+  margin-top: 8mm;
+  font-family: 'Inter Tight', 'Manrope', sans-serif;
+  font-weight: 700;
+  font-size: 14pt;
+  line-height: 1.6;
+  letter-spacing: 0.02em;
+}
+

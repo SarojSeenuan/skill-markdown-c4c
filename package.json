@@ -1,7 +1,7 @@
 {
   "name": "skill-markdown-c4c",
-  "version": "3.0.1",
-  "description": "株式会社C4C ブランドの Markdown ドキュメント生成スキル — Swiss Modern Minimal v3.0",
+  "version": "3.5.0",
+  "description": "株式会社C4C ブランドの Markdown ドキュメント生成スキル — Swiss Modern Minimal v3.5",
   "keywords": [
     "claude-code",
     "claude-skill",
@@ -16,15 +16,10 @@
     "vscode",
     "markdown-pdf"
   ],
-  "author": "Saroj Seenuan (Ken) / 株式会社C4C",
+  "author": "株式会社C4C",
   "license": "MIT",
-  "homepage": "https://github.com/SarojSeenuan/skill-markdown-c4c",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/SarojSeenuan/skill-markdown-c4c.git"
-  },
-  "bugs": {
-    "url": "https://github.com/SarojSeenuan/skill-markdown-c4c/issues"
+  "scripts": {
+    "build:zip": "node -e \"const os=require('os');const{execSync}=require('child_process');const cmd=os.platform()==='win32'?'pwsh -ExecutionPolicy Bypass -File ./scripts/build-zip.ps1':'bash ./scripts/build-zip.sh';execSync(cmd,{stdio:'inherit'})\""
   },
   "claude": {
     "skill": "skill/SKILL.md",

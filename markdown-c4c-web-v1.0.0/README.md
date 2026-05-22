@@ -6,7 +6,7 @@
 
 # markdown-c4c-web v1.0.0
 
-<div class="caption">配布元: 株式会社C4C / Saroj Seenuan (Ken)　·　Version: v1.0.0　·　Date: 2026-05-22</div>
+<div class="caption">配布元: 株式会社C4C　·　Version: v1.0.0　·　Date: 2026-05-23</div>
 
 Claude Web の無料アカウントと、お手元の VS Code だけで、株式会社C4C ブランドの **Swiss Modern v3.4** PDF ドキュメントが作れる配布パッケージ。
 
@@ -30,7 +30,7 @@ Claude Web の無料アカウントと、お手元の VS Code だけで、株式
 提案書・仕様書・報告書・議事録・README・設計書・見積書など、社内外で使うドキュメントを **デザインを気にせず中身に集中して書ける** ようになる。
 
 <div class="shape-box shape-brand">
-<p><strong>このパッケージの価値。</strong>Ken の手元環境とまったく同じクオリティーの PDF が、Word も Illustrator も使わずに、Markdown を書くだけで完成する。</p>
+<p><strong>このパッケージの価値。</strong>C4C 公式環境とまったく同じクオリティーの PDF が、Word も Illustrator も使わずに、Markdown を書くだけで完成する。</p>
 </div>
 
 ### このパッケージでできること
@@ -45,7 +45,7 @@ Claude Web の無料アカウントと、お手元の VS Code だけで、株式
 | 項目 | 内容 | 費用 |
 |:---|:---|:---:|
 | Claude Web アカウント | 無料プランで OK | 無料 |
-| Windows / Mac の PC | Windows 11 推奨 | — |
+| Windows / macOS / Linux の PC | OS は不問 | — |
 | VS Code | 公式から DL | 無料 |
 | Markdown PDF 拡張 | yzane 製 | 無料 |
 | インターネット接続 | 初回セットアップ時のみ大量通信 | — |
@@ -85,21 +85,22 @@ Claude Web の無料アカウントと、お手元の VS Code だけで、株式
 <h2 id="sec-files">4. ファイル構成</h2>
 
 ```
-markdown-c4c-web-v1.0.0\
+markdown-c4c-web-v1.0.0/
 ├── README.md                          ← このファイル
-├── SKILL.md                           ← Claude Web に登録する本体
+├── SKILL.md                           ← Claude Web に登録する本体（v3.5.0、自己充足型）
 │
-├── assets\
-│   ├── template-document.md          ← スタータードキュメント（テスト出力用）
-│   ├── components-gallery.md         ← 全コンポーネント一覧
-│   └── jp-fix-checklist.md           ← 日本語チェック 7 項目
+├── assets/
+│   ├── template-document.md          ← スタータードキュメント（表紙 + 締めページ付き）
+│   ├── components-gallery.md         ← 全コンポーネント一覧（オプション参照）
+│   ├── jp-fix-checklist.md           ← 日本語チェック 8 項目
+│   └── c4c-logo.png                  ← ブランドロゴ
 │
-└── pdf-setup\
-    ├── README-PDF-SETUP.md            ← セットアップ手順書（画像付き）
+└── pdf-setup/
+    ├── README-PDF-SETUP.md            ← セットアップ手順書（画像付き · 3 OS 対応）
     ├── how-to-export.md               ← 日常運用ガイド
-    ├── markdown-pdf.css               ← Swiss Modern v3.0 スタイル定義
+    ├── markdown-pdf.css               ← Swiss Modern v3.5 スタイル定義
     ├── settings.json.sample           ← VS Code 設定サンプル
-    └── images\                        ← 手順書用スクリーンショット 6 枚
+    └── images/                        ← 手順書用スクリーンショット 6 枚
 ```
 
 ### 各ファイルの役割
@@ -110,10 +111,10 @@ markdown-c4c-web-v1.0.0\
 | `assets\template-document.md` | コピペで使えるドキュメント雛形 |
 | `assets\components-gallery.md` | Callout / Shape Box / Divider などのコピペ集 |
 | `assets\jp-fix-checklist.md` | 日本語生成時のセルフチェック項目 |
-| `pdf-setup\markdown-pdf.css` | **★クオリティーの核心**。1321 行の Swiss Modern v3.0 CSS |
-| `pdf-setup\settings.json.sample` | VS Code に追記する設定（ヘッダ・フッタ・余白） |
-| `pdf-setup\README-PDF-SETUP.md` | 環境構築の全手順 |
-| `pdf-setup\how-to-export.md` | 日常運用フロー |
+| `pdf-setup/markdown-pdf.css` | **★クオリティーの核心**。2500 行超の Swiss Modern v3.5 CSS |
+| `pdf-setup/settings.json.sample` | VS Code に追記する設定（ヘッダ・フッタ・余白） |
+| `pdf-setup/README-PDF-SETUP.md` | 環境構築の全手順（Windows / macOS / Linux 対応） |
+| `pdf-setup/how-to-export.md` | 日常運用フロー |
 
 <hr class="divider-dot-line">
 
@@ -125,11 +126,11 @@ markdown-c4c-web-v1.0.0\
 
 <dl>
   <dt>配布元</dt>
-  <dd>株式会社C4C / Saroj Seenuan (Ken)</dd>
+  <dd>株式会社C4C</dd>
   <dt>連絡手段</dt>
-  <dd>社内 Slack DM、または社内メール</dd>
+  <dd>https://portal.c4c.co.jp/contact</dd>
   <dt>このパッケージのバージョン</dt>
-  <dd>v1.0.0（2026-05-22）</dd>
+  <dd>v1.0.0（2026-05-23）</dd>
 </dl>
 
 <div class="callout callout-warning">

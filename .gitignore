@@ -20,6 +20,12 @@ output/
 dist/
 build/
 
+# Note: distribution ZIPs (markdown-c4c-v*.zip) are NOT ignored — they are
+# committed to the repo so users can download via:
+#   - Raw GitHub URL (non-developers)
+#   - git clone (developers)
+#   - GitHub Releases (also published as release assets)
+
 # Backup
 *.bak
 *.tmp

@@ -1,7 +1,10 @@
 {
-  "//": "─── Markdown PDF — C4C Swiss Modern v3.0 ────────────────────────────",
+  "//": "─── Markdown PDF — C4C Swiss Modern v3.5 ────────────────────────────",
   "//": "VS Code settings.json にマージしてください。",
-  "//": "markdown-pdf.styles のパスは各自のユーザーホームに合わせて変更。",
+  "//": "markdown-pdf.styles のパスは OS に合わせて変更:",
+  "//": "  Windows : C:\\\\Users\\\\<USER>\\\\.claude\\\\styles\\\\markdown-pdf.css  (要 \\\\ 二重エスケープ)",
+  "//": "  macOS   : /Users/<user>/.claude/styles/markdown-pdf.css",
+  "//": "  Linux   : /home/<user>/.claude/styles/markdown-pdf.css",
 
   "markdown-pdf.styles": [
     "C:\\Users\\<USER>\\.claude\\styles\\markdown-pdf.css"

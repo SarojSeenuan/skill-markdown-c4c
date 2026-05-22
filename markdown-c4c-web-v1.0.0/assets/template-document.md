@@ -2,9 +2,26 @@
 <title>ドキュメントタイトル</title>
 </head>
 
+<div class="cover-page">
+  <div class="cover-logo"><img src="c4c-logo.png" alt="C4C" width="100"></div>
+  <hr class="cover-divider">
+  <h1 class="cover-title">ドキュメントタイトル</h1>
+  <p class="cover-subtitle">サブタイトル / 一行説明</p>
+  <hr class="cover-divider">
+  <table class="cover-meta">
+    <tr><th>DOCUMENT</th><td>クライアント提案書</td></tr>
+    <tr><th>VERSION</th><td>v1.0 · DRAFT</td></tr>
+    <tr><th>DATE</th><td>2026-05-22</td></tr>
+    <tr><th>AUTHOR</th><td>○○ ○○ / 役職</td></tr>
+    <tr><th>RECIPIENT</th><td>株式会社○○ 御中</td></tr>
+  </table>
+  <p class="cover-footer muted center">株式会社C4C · https://c4c.co.jp</p>
+</div>
+<div class="page-break"></div>
+
 # ドキュメントタイトル
 
-<div class="caption">Author: 担当者名　·　Version: v1.0 · DRAFT　·　Date: 2026-05-22</div>
+<div class="caption">Author: ○○ ○○　·　Version: v1.0 · DRAFT　·　Date: 2026-05-22</div>
 
 <nav class="toc toc-no-page">
   <h2>Index</h2>
@@ -324,12 +341,12 @@
 
 <div class="pullquote brand">
   <p class="pq-body">導入後 3 ヶ月で受注プロセスの作業時間が 40% 削減。 営業がコア業務に集中できる環境が整いました。</p>
-  <span class="pq-cite">田中 様 · 営業本部長 · 株式会社サンプル</span>
+  <span class="pq-cite">お客様 A 様 · 営業本部長 · 株式会社サンプル</span>
 </div>
 
 <div class="pullquote">
   <p class="pq-body">想定の倍速で機能拡張が進む。 社内チームでも追従できないスピードで、本気で驚いています。</p>
-  <span class="pq-cite">山田 様 · CTO · Acme Corp.</span>
+  <span class="pq-cite">お客様 B 様 · CTO · Acme Corp.</span>
 </div>
 
 <h2 id="sec-pricing">11. 料金プラン</h2>
@@ -381,29 +398,29 @@
 
 <div class="person-grid">
   <div class="person">
-    <img class="person-avatar" src="" alt="Saroj Seenuan">
-    <span class="person-name">Saroj Seenuan</span>
+    <img class="person-avatar" src="" alt="">
+    <span class="person-name">○○ ○○</span>
     <span class="person-role">Founder · CEO</span>
     <p class="person-body">Node.js / Python / Cloud アーキテクト。 10 年の開発リード経験。</p>
-    <span class="person-meta">JP · EN · TH</span>
+    <span class="person-meta">JP · EN</span>
   </div>
   <div class="person">
-    <img class="person-avatar" src="" alt="プロジェクトマネージャー">
-    <span class="person-name">山田 太郎</span>
+    <img class="person-avatar" src="" alt="">
+    <span class="person-name">○○ ○○</span>
     <span class="person-role">Project Manager</span>
     <p class="person-body">大規模 SaaS の PM 経験 8 年。 要件定義からリリースまで一貫対応。</p>
     <span class="person-meta">JP · EN</span>
   </div>
   <div class="person">
-    <img class="person-avatar" src="" alt="リードエンジニア">
-    <span class="person-name">佐藤 花子</span>
+    <img class="person-avatar" src="" alt="">
+    <span class="person-name">○○ ○○</span>
     <span class="person-role">Lead Engineer</span>
     <p class="person-body">Next.js / FastAPI に精通。 フロントとバックエンドの両領域に対応。</p>
     <span class="person-meta">JP · EN</span>
   </div>
   <div class="person">
-    <img class="person-avatar" src="" alt="UIデザイナー">
-    <span class="person-name">鈴木 一郎</span>
+    <img class="person-avatar" src="" alt="">
+    <span class="person-name">○○ ○○</span>
     <span class="person-role">UI/UX Designer</span>
     <p class="person-body">B2B SaaS のデザイン経験 6 年。 Figma とデザインシステム構築。</p>
     <span class="person-meta">JP</span>
@@ -476,8 +493,8 @@
 ```json
 {
   "id": "550e8400-e29b-41d4-a716-446655440000",
-  "name": "Saroj Seenuan",
-  "email": "ken@c4c.co.jp",
+  "name": "Yamada Taro",
+  "email": "name@c4c.co.jp",
   "role": "admin",
   "created_at": "2026-01-15T09:30:00Z"
 }
@@ -619,6 +636,16 @@
 - [株式会社C4C 公式サイト](https://example.com)
 - [前回のプロジェクト報告書](https://example.com/report)
 
-<hr class="divider-brand">
+<div class="closing-page closing-message">
+  <hr class="divider-brand">
+  <p class="closing-thanks">ご覧いただき、ありがとうございました。</p>
+  <p class="closing-credo brand">「カタチ」に残すだけじゃない、<br>「ココロ」に残る仕事を。</p>
+  <p class="closing-org muted">株式会社C4C</p>
+</div>
 
-<p class="center muted">— END OF DOCUMENT —</p>
+<div class="closing-page closing-cta">
+  <hr class="divider-brand">
+  <h2 class="closing-cta-title">ご相談・お問い合わせ</h2>
+  <p class="closing-cta-body">本ご提案にご興味をお持ちいただけましたら、お気軽にご連絡ください。</p>
+  <p class="closing-cta-button center"><a href="https://portal.c4c.co.jp/contact">→ portal.c4c.co.jp/contact</a></p>
+</div>

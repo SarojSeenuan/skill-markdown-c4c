@@ -1,12 +1,21 @@
 {
-  "//": "─── Markdown PDF — C4C Swiss Modern v3.0 (Web 配布版) ────────────────",
+  "//": "─── Markdown PDF — C4C Swiss Modern v3.5 (Web 配布版) ────────────────",
   "//": "このファイルは settings.json のサンプル。VS Code の settings.json に",
   "//": "中身を 「マージ」 してください（既存設定を消さないように）。",
   "//": "",
-  "//": "1. VS Code で Ctrl+Shift+P → 'Preferences: Open User Settings (JSON)'",
+  "//": "1. VS Code で settings.json を開く（OS 別に場所が違う）:",
+  "//": "    Windows : %APPDATA%\\Code\\User\\settings.json",
+  "//": "    macOS   : ~/Library/Application Support/Code/User/settings.json",
+  "//": "    Linux   : ~/.config/Code/User/settings.json",
+  "//": "   コマンドパレット → 'Preferences: Open User Settings (JSON)' でも開ける",
   "//": "2. 開いた settings.json に、下の \"markdown-pdf.*\" キーを追記する",
-  "//": "3. markdown-pdf.css を C:\\c4c_works\\markdown-c4c\\markdown-pdf.css に配置する",
-  "//": "   （CSS の場所を変える場合は markdown-pdf.styles の値も合わせて変更）",
+  "//": "3. markdown-pdf.css を OS 別の推奨配置パスに置く:",
+  "//": "    Windows : C:\\c4c_works\\markdown-c4c\\markdown-pdf.css",
+  "//": "    macOS   : /Users/yourname/c4c_works/markdown-c4c/markdown-pdf.css",
+  "//": "    Linux   : /home/yourname/c4c_works/markdown-c4c/markdown-pdf.css",
+  "//": "4. 下の markdown-pdf.styles の値も OS に合わせて書き換える",
+  "//": "   - Windows のみ \\\\ と二重バックスラッシュにする (JSON 仕様)",
+  "//": "   - macOS / Linux は / で OK (~ は使えない、絶対パスで書く)",
 
   "markdown-pdf.styles": [
     "C:\\c4c_works\\markdown-c4c\\markdown-pdf.css"
