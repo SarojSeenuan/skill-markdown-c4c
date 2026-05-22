@@ -17,7 +17,7 @@ argument-hint: "[ドキュメントタイトル or 要件]"
 ## 必須生成項目（SKILL.md 準拠）
 
 - `<head><title>...</title></head>` 冒頭埋込
-- `<nav class="toc">` 目次（H2 数 ≥ 3 の場合）
+- `<nav class="toc toc-no-page">` 目次（H2 数 ≥ 3 の場合、**ページ番号なし**）
 - `<h2 id="sec-xxx">` 形式の見出し（クリック遷移可能）
 - Callout / Shape Box / Divider はバリエーション使い回し
 - 画像は重要時 `<div class="shape-box" data-title="...">` 形式
