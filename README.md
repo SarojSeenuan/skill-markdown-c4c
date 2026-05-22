@@ -1,222 +1,410 @@
 <div align="center">
 
-# `skill-markdown-c4c`
+<br>
 
-### Swiss Modern Minimal Markdown Design System — v3.0
+<img src="https://img.shields.io/badge/-%E2%96%88-8A248C?style=for-the-badge&labelColor=8A248C" height="48" alt=""/>
 
-PDF 出力前提の Markdown を、ブランド統一品質で生成する Claude Code スキル。
+# `markdown-c4c`
 
-[![Skills](https://img.shields.io/badge/skills.sh-v3.0.0-8A248C?style=flat-square&labelColor=040104)](https://skills.sh)
-[![License](https://img.shields.io/badge/license-MIT-040104?style=flat-square&labelColor=8A248C)](LICENSE)
+### Swiss Modern Minimal Document Design System
+
+`v3.3.1`　·　`#8A248C`　·　`#888888`　·　`#040104`
+
+<br>
+
+Markdown だけで、**ブランド統一されたクライアント品質の PDF** を量産する。
+Claude / VS Code / Markdown PDF の 3 つを繋ぐ、株式会社C4C の標準ドキュメントシステム。
+
+<br>
+
+[![Version](https://img.shields.io/badge/version-v3.3.1-8A248C?style=flat-square&labelColor=040104)](./CHANGELOG.md)
+[![License](https://img.shields.io/badge/license-MIT-040104?style=flat-square&labelColor=8A248C)](./LICENSE)
 [![VS Code](https://img.shields.io/badge/VS_Code-Markdown_PDF-888888?style=flat-square&labelColor=040104&logo=visualstudiocode&logoColor=white)](https://marketplace.visualstudio.com/items?itemName=yzane.markdown-pdf)
-[![Brand](https://img.shields.io/badge/-%238A248C%20%C2%B7%20%23888888%20%C2%B7%20%23040104-040104?style=flat-square&labelColor=8A248C)](#brand-system)
+[![Claude](https://img.shields.io/badge/Claude_Code-skill-040104?style=flat-square&labelColor=8A248C)](https://claude.com/claude-code)
+[![Claude Web](https://img.shields.io/badge/Claude_Web-distributable-040104?style=flat-square&labelColor=888888)](./markdown-c4c-web-v1.0.0)
+
+<br>
 
 </div>
 
 ---
 
+<div align="center">
+
 <table>
 <tr>
-<td width="50%">
-<img src="docs/screenshots/01-cover-toc.png" alt="Cover page with TOC" />
-</td>
-<td width="50%">
-<img src="docs/screenshots/02-callout-showcase.png" alt="Callout components" />
-</td>
+<td width="50%"><img src="docs/screenshots/01-cover-toc.png" alt="表紙 + 目次"/></td>
+<td width="50%"><img src="docs/screenshots/02-callout-showcase.png" alt="Callout"/></td>
 </tr>
 <tr>
-<td align="center"><sub><b>表紙 + 目次（ドットリーダー + クリック遷移）</b></sub></td>
-<td align="center"><sub><b>Callout 5 種類（NOTE / TIP / INFO / WARNING / DANGER）</b></sub></td>
+<td align="center"><sub><b>COVER + TABLE OF CONTENTS</b><br>クリック遷移可能な目次（ページ番号なし）</sub></td>
+<td align="center"><sub><b>CALLOUT 5 VARIANTS</b><br>NOTE · TIP · INFO · 注意 · 重要</sub></td>
 </tr>
 </table>
 
-> 全コンポーネントのギャラリーは **[docs/screenshots/gallery](docs/screenshots/gallery/)** を参照。
+> 全コンポーネントギャラリーは **[`docs/screenshots/gallery/`](docs/screenshots/gallery/)** を参照。
+
+</div>
+
+<br>
 
 ---
 
-## ▍ Overview
+<br>
 
-`skill-markdown-c4c` は、**社内ドキュメント・クライアント提案書・設計書・仕様書・報告書・議事録・README** を、株式会社C4C のブランド統一で生成する Claude Code スキルです。
+## ▍ What is `markdown-c4c`
 
-- **自動呼出** — Markdown 生成のトリガー語で Claude が自動でスキルを参照
-- **スラッシュコマンド** — `/markdown-c4c [タイトル]` で明示呼出
-- **PDF 出力前提** — VS Code Markdown PDF 拡張 (`yzane.markdown-pdf`) と完全連携
-- **JP Fix 内蔵** — 日本語出力時の 7 項目セルフチェック
+社内資料・クライアント提案書・設計書・仕様書・報告書・議事録・API ドキュメント — そのすべてを **Markdown 1 ファイル** で、**株式会社C4C のブランドガイドラインに完全準拠した PDF** として生成するシステム。
+
+Word / PowerPoint / Illustrator は使わない。Claude にお願いするか、テンプレを少し編集するだけ。出力はいつも同じクオリティーで、フォントもカラーもレイアウトも揺れない。
+
+<br>
 
 <table>
-<tr><th align="left" width="220">コンポーネント</th><th align="left">バリエーション数</th><th align="left">用途</th></tr>
-<tr><td><code>Callout</code></td><td>5 種</td><td>NOTE / TIP / INFO / WARNING / DANGER</td></tr>
-<tr><td><code>Shape Box</code></td><td>5 種</td><td>標準 / filled / outline / brand / data-title</td></tr>
-<tr><td><code>Divider</code></td><td>9 種</td><td>hairline / double / dot 系 6 種 / brand 菱形</td></tr>
-<tr><td><code>Table</code></td><td>5 種</td><td>4辺枠線（既定）/ no-borders / compact / jp / wrap</td></tr>
-<tr><td><code>TOC</code></td><td>—</td><td>ドットリーダー + クリック遷移可能目次</td></tr>
-<tr><td><code>Code Block</code></td><td>—</td><td>One Dark 配色 + ファイル名ヘッダ対応</td></tr>
+<tr>
+<td width="33%">
+<sub><b>FOR CLAUDE CODE</b></sub><br><br>
+スキルとして自動呼出。 トリガー語を含む依頼で Claude が自動でこのスタイルを使う。
+</td>
+<td width="33%">
+<sub><b>FOR CLAUDE WEB</b></sub><br><br>
+無料版でも使える配布パッケージ <code>markdown-c4c-web-v1.0.0</code> を同梱。 社内へ ZIP で配布可能。
+</td>
+<td width="33%">
+<sub><b>FOR DESIGNERS</b></sub><br><br>
+CSS 変数 3 行を差し替えれば、別ブランドへの転用も可能。 Swiss Modern Minimal をベースに完全カスタム可。
+</td>
+</tr>
 </table>
 
+<br>
+
 ---
+
+<br>
+
+## ▍ Case Study — Before / After
+
+「同じ Markdown を、CSS を変えるだけで」どこまで変わるか。
+
+<table>
+<tr>
+<th align="center" width="33%">BEFORE — Default</th>
+<th align="center" width="33%">BEFORE — Default (alt)</th>
+<th align="center" width="33%">AFTER — markdown-c4c v3.3</th>
+</tr>
+<tr>
+<td><img src="docs/screenshots/case-study/01-before-default.png" alt="Before 1"/></td>
+<td><img src="docs/screenshots/case-study/02-before-default-alt.png" alt="Before 2"/></td>
+<td><img src="docs/screenshots/case-study/03-after-c4c.png" alt="After"/></td>
+</tr>
+</table>
+
+詳細解説 **[`docs/case-studies/01-introduction.md`](docs/case-studies/01-introduction.md)**
+
+<br>
+
+---
+
+<br>
+
+## ▍ Components — v3.3 Lineup
+
+ドキュメントの「型」を意識せず書き始められる 20+ のコンポーネント。 デザイナーが手で起こすレベルの仕上がりを、Markdown + クラス指定だけで実現。
+
+<table>
+<tr>
+<th align="left" width="180">CATEGORY</th>
+<th align="left" width="80">COUNT</th>
+<th align="left">VARIANTS</th>
+</tr>
+<tr><td><code>Callout</code></td><td>5</td><td>NOTE · TIP · INFO · 注意 · 重要</td></tr>
+<tr><td><code>Shape Box</code></td><td>5</td><td>standard · filled · outline · brand · data-title</td></tr>
+<tr><td><code>Divider</code></td><td>9</td><td>hairline · double · dot 系 6 種 · brand 菱形</td></tr>
+<tr><td><code>Table</code></td><td>5</td><td>枠線あり · no-borders · compact · jp · wrap</td></tr>
+<tr><td><code>Stats / KPI</code></td><td>8 accent</td><td>red · green · blue · brand · amber · orange · pink · gray</td></tr>
+<tr><td><code>Timeline</code></td><td>3 state</td><td>done · active · pending（CSS counter で自動採番）</td></tr>
+<tr><td><code>Pull Quote</code></td><td>2</td><td>標準 · brand</td></tr>
+<tr><td><code>Comparison</code></td><td>2 col</td><td>BEFORE / AFTER カード</td></tr>
+<tr><td><code>Bar Chart</code></td><td>2 axis</td><td>横バー · 縦バー（intensity 透明度で値の大小表現）</td></tr>
+<tr><td><code>Line Graph</code></td><td>2 line</td><td>実線 + 破線 + 凡例（SVG ベース X/Y 軸）</td></tr>
+<tr><td><code>Feature List</code></td><td>2</td><td>標準 · brand（インライン SVG アイコン推奨・絵文字禁止）</td></tr>
+<tr><td><code>Person Card</code></td><td>—</td><td>avatar + name + role + body + meta</td></tr>
+<tr><td><code>Pricing Table</code></td><td>2</td><td>標準 · featured（RECOMMENDED バッジ自動）</td></tr>
+<tr><td><code>API Blueprint</code></td><td>7 method</td><td>GET · POST · PUT · PATCH · DELETE · HEAD · OPTIONS</td></tr>
+<tr><td><code>TOC</code></td><td>—</td><td>クリック遷移可能（ページ番号なし · 実 PDF と必ずズレるため）</td></tr>
+<tr><td><code>Code Block</code></td><td>—</td><td>One Dark Pro + ファイル名ヘッダ対応</td></tr>
+</table>
+
+詳細スニペット **[`skill/references/components.md`](skill/references/components.md)**
+
+<br>
+
+---
+
+<br>
 
 ## ▍ Brand System
 
 <table>
 <tr>
-<th align="left" width="180">Token</th>
+<th align="left" width="200">TOKEN</th>
 <th align="left" width="120">HEX</th>
-<th align="left">Role</th>
+<th align="left">ROLE</th>
 </tr>
 <tr>
 <td><code>--brand-primary</code></td>
 <td><code>#8A248C</code></td>
-<td>マゼンタパープル · アクセント 1 点</td>
+<td>マゼンタパープル · アクセント 1 点のみ</td>
 </tr>
 <tr>
 <td><code>--brand-secondary</code></td>
 <td><code>#888888</code></td>
-<td>ミディアムグレー · 補助テキスト</td>
+<td>ミディアムグレー · 補助テキスト · 罫線</td>
 </tr>
 <tr>
 <td><code>--brand-ink</code></td>
 <td><code>#040104</code></td>
-<td>インクブラック · 本文・最強罫線</td>
+<td>インクブラック · 本文 · 最強罫線</td>
 </tr>
 </table>
 
-CSS の `:root` 内 3 行を差し替えるだけで別ブランドにも転用可能。
+#### Typography Stack
+- **Display** — `Inter Tight` / 数字 tabular nums
+- **Body** — `Manrope`
+- **Monospace** — `JetBrains Mono` / `SF Mono`
+- **Japanese** — `Hiragino Kaku Gothic ProN` / `Yu Gothic`
+
+#### Grid System
+- A4 縦 · margin `24mm / 20mm`
+- Spacing tokens `--sp-1` 〜 `--sp-8`（4px → 64px）
+- ヘアライン `0.5pt` ベース · 強調罫線 `2pt`
+
+CSS の `:root` 内 3 行を差し替えるだけで別ブランドにも完全転用可能。
+
+<br>
 
 ---
 
-## ▍ Install
+<br>
 
-### A. `npx skills`（推奨・公開後）
+## ▍ Install — Claude Code
 
-```bash
-npx skills add SarojSeenuan/skill-markdown-c4c -g -y
-```
-
-### B. ワンライナー install スクリプト
+#### A. ワンライナーインストールスクリプト（推奨）
 
 **Windows (PowerShell):**
-
 ```powershell
 irm https://raw.githubusercontent.com/SarojSeenuan/skill-markdown-c4c/main/scripts/install.ps1 | iex
 ```
 
 **macOS / Linux:**
-
 ```bash
 curl -fsSL https://raw.githubusercontent.com/SarojSeenuan/skill-markdown-c4c/main/scripts/install.sh | bash
 ```
 
-### C. 手動 git clone
+#### B. 手動 `git clone`
 
 ```bash
 git clone https://github.com/SarojSeenuan/skill-markdown-c4c.git ~/c4c-skill
 cd ~/c4c-skill
-./scripts/install.sh        # macOS / Linux
-.\scripts\install.ps1       # Windows
+./scripts/install.sh           # macOS / Linux
+.\scripts\install.ps1          # Windows
 ```
 
-> インストールスクリプトは `~/.claude/skills/`、`~/.claude/commands/`、`~/.claude/styles/`、`~/.claude/rules/` の 4 箇所に必要なファイルを自動配置します。
+#### C. `npx skills`（公開後）
+
+```bash
+npx skills add SarojSeenuan/skill-markdown-c4c -g -y
+```
+
+インストールスクリプトは以下の 4 箇所に必要ファイルを自動配置:
+- `~/.claude/skills/markdown-c4c/`
+- `~/.claude/commands/markdown-c4c.md`
+- `~/.claude/styles/markdown-pdf.css`
+- `~/.claude/rules/{jp-fix-checklist,markdown-generation}.md`
+
+<br>
 
 ---
 
+<br>
+
+## ▍ Install — Claude Web 無料版
+
+無料版を使うチームメンバー向けに、ZIP で配布可能なパッケージを同梱しています。
+
+#### 配布物
+```
+markdown-c4c-web-v1.0.0/
+├── README.md                          ← 最初に読む
+├── SKILL.md                           ← Claude Web に登録するスキル
+├── assets/
+│   ├── template-document.md
+│   ├── components-gallery.md
+│   └── jp-fix-checklist.md
+└── pdf-setup/
+    ├── README-PDF-SETUP.md            ← 画像付きセットアップ手順
+    ├── markdown-pdf.css
+    ├── settings.json.sample
+    ├── how-to-export.md
+    └── images/                        ← スクリーンショット 6 枚
+```
+
+詳細 **[`markdown-c4c-web-v1.0.0/README.md`](markdown-c4c-web-v1.0.0/README.md)**
+
+<br>
+
+---
+
+<br>
+
 ## ▍ Prerequisites
 
+#### Claude Code 版
+
 ```bash
-# Claude Code（最新版）
-# https://claude.com/claude-code
+# Claude Code（最新版） — https://claude.com/claude-code
 
 # VS Code Markdown PDF 拡張
 code --install-extension yzane.markdown-pdf
 ```
 
-インストール後、VS Code の `settings.json` に `skill/assets/setup-vscode-settings.json` の内容をマージしてください（パスは各自のホームディレクトリに調整）。
+インストール後、VS Code の `settings.json` に `skill/assets/setup-vscode-settings.json` の内容をマージ（CSS パスは各自のホームに調整）。
+
+#### Claude Web 版
+
+- Claude Web 無料アカウント（[claude.ai](https://claude.ai)）
+- VS Code + `yzane.markdown-pdf` 拡張
+- [Windows / macOS / Linux] OS は不問
+
+<br>
 
 ---
 
+<br>
+
 ## ▍ Usage
 
-### 自動呼出（推奨）
+#### 自動呼出（推奨）
 
-Markdown 生成のトリガー語を含む依頼をすると、Claude が自動でこのスキルを参照します。
+Markdown 生成のトリガー語を含む依頼で、Claude が自動でこのスキルを参照します。
 
 ```
 社内向けプロジェクト報告書を Markdown で作って
 ```
 
-> トリガー語: Markdown / ドキュメント / 提案書 / 仕様書 / 報告書 / 議事録 / README / 設計書 / 見積書 / `.md` 編集
+> トリガー語: Markdown · ドキュメント · 提案書 · 仕様書 · 報告書 · 議事録 · README · 設計書 · 見積書 · `.md` 編集
 
-### スラッシュコマンド
+#### スラッシュコマンド
 
 ```
 /markdown-c4c 新サービス提案書 v1.0
 ```
 
-引数にドキュメントタイトル or 要件を渡せます。
+引数にタイトル or 要件を渡せます。
 
-### テンプレートから手動開始
+#### テンプレートから手動開始
 
-`skill/assets/template-document.md` を雛形としてコピー → 編集 → PDF エクスポート。
+`skill/assets/template-document.md` を雛形としてコピー → 編集 → VS Code で右クリック → `Markdown PDF: Export (pdf)`。
+
+<br>
 
 ---
+
+<br>
+
+## ▍ Header / Footer Defaults
+
+| 位置 | 内容 |
+|:---|:---|
+| **ヘッダ左** | `株式会社C4C`（縦バー · uppercase · letter-spacing 0.18em） |
+| **ヘッダ右** | ドキュメント `<title>`（ブランド色） |
+| **ヘッダ下** | `0.5pt` のブランドカラー水平罫線 |
+| **フッタ左** | 空（バージョンは本文の caption 行に動的に記載） |
+| **フッタ右** | `現在 / 総数`（例: `6 / 15` · tabular nums） |
+
+#### バージョン表記の動的指定
+
+ドキュメントタイトル直下の `caption` 行で柔軟に変えられます:
+
+```markdown
+<div class="caption">Author: 担当者名　·　Version: v2.3 · FINAL　·　Date: 2026-05-22</div>
+```
+
+#### 組織名の切替
+
+| 指示 | 対応 |
+|:---|:---|
+| 何も言われない | `株式会社C4C`（デフォルト） |
+| 「個人名で」「SAROJ で」 | `settings.json` の `header-org` を `SAROJ SEENUAN` に切替する差分提示 |
+
+<br>
+
+---
+
+<br>
 
 ## ▍ Repository Structure
 
 ```
 skill-markdown-c4c/
 ├── README.md                              ← このファイル
-├── CHANGELOG.md                           ← Keep a Changelog
+├── CHANGELOG.md                           ← Keep a Changelog 形式
 ├── LICENSE                                ← MIT
 ├── package.json                           ← npx skills メタデータ
 │
-├── skill/                                 ▍ スキル本体
-│   ├── SKILL.md                              ・ 自動呼出トリガー定義
-│   ├── README.md                             ・ スキル単体ドキュメント
-│   ├── command.md                            ・ /markdown-c4c コマンド定義
+├── skill/                                 ▍ Claude Code 用スキル本体
+│   ├── SKILL.md                              · 自動呼出トリガー定義
+│   ├── README.md                             · スキル単体ドキュメント
+│   ├── command.md                            · /markdown-c4c コマンド定義
 │   ├── assets/                               ▍ 配布アセット
-│   │   ├── markdown-pdf.css                     ・ Swiss Modern v3.0 CSS
-│   │   ├── markdown-generation.md               ・ 生成ルール
-│   │   ├── jp-fix-checklist.md                  ・ JP Fix 7 項目
-│   │   ├── setup-vscode-settings.json           ・ VS Code 設定スニペット
-│   │   └── template-document.md                 ・ スタータードキュメント
+│   │   ├── markdown-pdf.css                     · Swiss Modern v3.3 CSS
+│   │   ├── markdown-generation.md               · 生成ルール
+│   │   ├── jp-fix-checklist.md                  · JP Fix 8 項目
+│   │   ├── setup-vscode-settings.json           · VS Code 設定スニペット
+│   │   └── template-document.md                 · スタータードキュメント
 │   └── references/
-│       └── components.md                     ・ 全コンポーネントギャラリー
+│       └── components.md                     · 全コンポーネントギャラリー
+│
+├── markdown-c4c-web-v1.0.0/               ▍ Claude Web 無料版用配布パッケージ
+│   ├── README.md                             · パッケージ概要
+│   ├── SKILL.md                              · Claude Web 登録用
+│   ├── assets/                               · テンプレート + ギャラリー + JP Fix
+│   └── pdf-setup/                            · CSS + settings + 画像付き手順書
 │
 ├── scripts/                               ▍ インストーラー
-│   ├── install.sh                            ・ macOS / Linux
-│   └── install.ps1                           ・ Windows PowerShell
+│   ├── install.sh                            · macOS / Linux
+│   └── install.ps1                           · Windows PowerShell
 │
-└── docs/screenshots/                      ▍ ビジュアル
-    ├── 01-cover-toc.png                      ・ 表紙 + TOC
-    ├── 02-callout-showcase.png               ・ Callout 5 種
-    └── gallery/                              ▍ 全コンポーネントギャラリー
+├── docs/                                  ▍ ドキュメント
+│   ├── articles/                             · ブログ記事 · 導入ストーリー
+│   ├── case-studies/                         · Before / After 事例
+│   └── screenshots/                          · プロモ画像 · ギャラリー
+│
+└── package.json
 ```
 
----
-
-## ▍ Header / Footer Defaults
-
-| 位置 | 内容 |
-|:---|:---|
-| **ヘッダ左** | `株式会社C4C`（縦バー + uppercase + letter-spacing） |
-| **ヘッダ右** | ドキュメント `<title>`（ブランド色） |
-| **フッタ左** | `v1.0 · DRAFT`（資料バージョン） |
-| **フッタ右** | `現在 / 総数`（例: `6 / 15`） |
-
-個人名で出したい場合は、Claude に「個人名で」「SAROJ で」と指示すれば `SAROJ SEENUAN` に切替する差分が提示されます。
+<br>
 
 ---
+
+<br>
 
 ## ▍ Update
 
 ```bash
 cd ~/c4c-skill
 git pull
-./scripts/install.sh         # or .\scripts\install.ps1
+./scripts/install.sh             # or .\scripts\install.ps1
 ```
 
 または `npx skills update` で全スキル一括更新。
 
+<br>
+
 ---
+
+<br>
 
 ## ▍ Uninstall
 
@@ -226,26 +414,70 @@ rm ~/.claude/commands/markdown-c4c.md
 # CSS と rules は他用途と共有の可能性あり — 手動判断
 ```
 
+<br>
+
 ---
+
+<br>
 
 ## ▍ Changelog
 
-詳細は **[CHANGELOG.md](./CHANGELOG.md)** を参照。
+詳細 **[`CHANGELOG.md`](./CHANGELOG.md)**
 
-**v3.0.0** — Swiss Modern Minimal 全面リライト · Callout 5 / Shape Box 5 / Divider 9 / Table 5 / TOC クリック遷移 · スラッシュコマンド対応 · JP Fix 内蔵
+<table>
+<tr><th align="left" width="120">VERSION</th><th align="left">HIGHLIGHTS</th></tr>
+<tr><td><code>v3.3.1</code></td><td>API params テーブル余白修正 · Response Status の AI 臭デザインを GitHub Primer 風に刷新</td></tr>
+<tr><td><code>v3.3.0</code></td><td>API Blueprint コンポーネント追加（HTTP method 7 色 · params 表 · status · example）</td></tr>
+<tr><td><code>v3.2.0</code></td><td>Stat Card 刷新（縦バー + chevron + 8 accent 色）· Bar Chart 縦バージョン · Line Graph 追加 · Donut 削除 · Pricing 余白拡大 · Callout ラベル日本語化</td></tr>
+<tr><td><code>v3.1.0</code></td><td>拡張コンポーネント 9 種追加（Stats / Timeline / Pull Quote / Comparison / Bar Chart / Feature List / Person / Pricing）</td></tr>
+<tr><td><code>v3.0.0</code></td><td>Swiss Modern Minimal 全面リライト · Callout / Shape Box / Divider / Table / TOC · スラッシュコマンド · JP Fix 内蔵</td></tr>
+</table>
+
+<br>
 
 ---
+
+<br>
+
+## ▍ Philosophy
+
+> **Clarity over cleverness.**
+> 装飾ではなく、構造でクオリティーを保つ。
+>
+> **One source, many outputs.**
+> Markdown 1 ファイルから、PDF · HTML · Print まで同じデザインで出る。
+>
+> **Designed, not generated.**
+> AI らしいフォント・グラデ・左バーは使わない。 デザイナーの判断を CSS に込める。
+
+<br>
+
+---
+
+<br>
 
 ## ▍ License
 
 [MIT](./LICENSE) © 2026 Saroj Seenuan (Ken) / 株式会社C4C
 
----
+<br>
 
 <div align="center">
 
-**`#8A248C`** &nbsp; · &nbsp; **`#888888`** &nbsp; · &nbsp; **`#040104`**
+<br>
 
-<sub>Designed by Saroj Seenuan (Ken) · Built for 株式会社C4C</sub>
+<sub>
+
+`#8A248C` &nbsp; · &nbsp; `#888888` &nbsp; · &nbsp; `#040104`
+
+</sub>
+
+<br>
+
+<sub><b>Designed by Saroj Seenuan (Ken) · Built for 株式会社C4C</b></sub>
+
+<br>
+
+<img src="https://img.shields.io/badge/-%E2%96%88-8A248C?style=for-the-badge&labelColor=040104" height="14" alt=""/>
 
 </div>

@@ -13,8 +13,8 @@
   "//": "ヘッダ — 左: 縦バー + 株式会社C4C / 右: ドキュメントタイトル / 下: ブランド色ライン",
   "markdown-pdf.headerTemplate": "<div style='font-size:8pt;width:100%;padding:0 20mm;color:#040104;font-family:Manrope,Helvetica,sans-serif;display:flex;align-items:center;justify-content:space-between;border-bottom:0.5pt solid #8a248c;padding-bottom:4mm;'><div style='display:flex;align-items:center;gap:8pt;'><span style='display:inline-block;width:3pt;height:13pt;background:#8a248c;'></span><span class='header-org' style='font-weight:800;letter-spacing:0.18em;text-transform:uppercase;font-size:7.5pt;color:#040104;'>株式会社C4C</span></div><span style='font-weight:500;letter-spacing:0.12em;text-transform:uppercase;font-size:7pt;color:#8a248c;'><span class='title'></span></span></div>",
 
-  "//": "フッタ — 左: 資料バージョン / 右: ページ番号 (currentページ/合計)",
-  "markdown-pdf.footerTemplate": "<div style='font-size:8pt;width:100%;padding:0 20mm;font-family:Manrope,Helvetica,sans-serif;font-variant-numeric:tabular-nums;display:flex;align-items:center;justify-content:space-between;color:#888888;'><span class='footer-version' style='font-size:6.5pt;letter-spacing:0.16em;text-transform:uppercase;color:#888888;'>v1.0 &nbsp;·&nbsp; DRAFT</span><span style='font-weight:600;color:#040104;font-size:8.5pt;'><span class='pageNumber'></span><span style='color:#888888;margin:0 3pt;'>/</span><span class='totalPages' style='color:#888888;'></span></span></div>",
+  "//": "フッタ — 左: 空（バージョンは Markdown 本文の caption 行に書く） / 右: ページ番号",
+  "markdown-pdf.footerTemplate": "<div style='font-size:8pt;width:100%;padding:0 20mm;font-family:Manrope,Helvetica,sans-serif;font-variant-numeric:tabular-nums;display:flex;align-items:center;justify-content:space-between;color:#888888;'><span class='footer-version' style='font-size:6.5pt;letter-spacing:0.16em;text-transform:uppercase;color:#888888;'></span><span style='font-weight:600;color:#040104;font-size:8.5pt;'><span class='pageNumber'></span><span style='color:#888888;margin:0 3pt;'>/</span><span class='totalPages' style='color:#888888;'></span></span></div>",
 
   "markdown-pdf.format": "A4",
   "markdown-pdf.printBackground": true,
