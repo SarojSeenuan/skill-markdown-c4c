@@ -3,25 +3,29 @@
 </head>
 
 <div class="cover-page">
-  <div class="cover-logo"><img src="c4c-logo.png" alt="C4C" width="100"></div>
-  <hr class="cover-divider">
-  <h1 class="cover-title">ドキュメントタイトル</h1>
-  <p class="cover-subtitle">サブタイトル / 一行説明</p>
-  <hr class="cover-divider">
+  <div class="cover-mark">
+    <img src="c4c-logo.png" alt="C4C">
+    <span class="cover-mark-label">株式会社C4C</span>
+  </div>
+  <div class="cover-body">
+    <span class="cover-eyebrow">PROPOSAL</span>
+    <h1 class="cover-title">ドキュメントタイトル</h1>
+    <p class="cover-subtitle">サブタイトル / 一行説明</p>
+  </div>
   <table class="cover-meta">
-    <tr><th>DOCUMENT</th><td>クライアント提案書</td></tr>
-    <tr><th>VERSION</th><td>v1.0 · DRAFT</td></tr>
-    <tr><th>DATE</th><td>2026-05-22</td></tr>
+    <tr><th>CLIENT</th><td>株式会社○○ 御中</td></tr>
+    <tr><th>VERSION</th><td>v1.0</td></tr>
+    <tr><th>DATE</th><td>2026-05-23</td></tr>
     <tr><th>AUTHOR</th><td>○○ ○○ / 役職</td></tr>
-    <tr><th>RECIPIENT</th><td>株式会社○○ 御中</td></tr>
   </table>
-  <p class="cover-footer muted center">株式会社C4C · https://c4c.co.jp</p>
+  <p class="cover-footer">株式会社C4C · portal.c4c.co.jp</p>
 </div>
-<div class="page-break"></div>
+
+<div class="no-break">
 
 # ドキュメントタイトル
 
-<div class="caption">Author: ○○ ○○　·　Version: v1.0 · DRAFT　·　Date: 2026-05-22</div>
+<div class="caption">Author: ○○ ○○　·　Version: v1.0 · DRAFT　·　Date: 2026-05-23</div>
 
 <nav class="toc toc-no-page">
   <h2>Index</h2>
@@ -43,6 +47,8 @@
     <li><a href="#sec-appendix">付録</a></li>
   </ol>
 </nav>
+
+</div>
 
 <h2 id="sec-overview">1. 概要</h2>
 
@@ -636,16 +642,17 @@
 - [株式会社C4C 公式サイト](https://example.com)
 - [前回のプロジェクト報告書](https://example.com/report)
 
-<div class="closing-page closing-message">
-  <hr class="divider-brand">
-  <p class="closing-thanks">ご覧いただき、ありがとうございました。</p>
-  <p class="closing-credo brand">「カタチ」に残すだけじゃない、<br>「ココロ」に残る仕事を。</p>
-  <p class="closing-org muted">株式会社C4C</p>
+<div class="closing-page closing-cta">
+  <span class="closing-cta-eyebrow">CONTACT</span>
+  <h2 class="closing-cta-title">ご相談・お問い合わせ</h2>
+  <p class="closing-cta-body">本ご提案にご興味をお持ちいただけましたら、お気軽にご連絡ください。 貴社の現状に合わせて、導入方式やスケジュールを個別にご相談いたします。</p>
+  <a class="closing-cta-button" href="https://portal.c4c.co.jp/contact">portal.c4c.co.jp/contact →</a>
+  <p class="closing-cta-meta">株式会社C4C · SES事業部</p>
 </div>
 
-<div class="closing-page closing-cta">
-  <hr class="divider-brand">
-  <h2 class="closing-cta-title">ご相談・お問い合わせ</h2>
-  <p class="closing-cta-body">本ご提案にご興味をお持ちいただけましたら、お気軽にご連絡ください。</p>
-  <p class="closing-cta-button center"><a href="https://portal.c4c.co.jp/contact">→ portal.c4c.co.jp/contact</a></p>
+<div class="closing-page closing-watermark">
+  <img class="watermark-logo" src="c4c-logo.png" alt="">
+  <p class="closing-thanks">最後までご覧いただき、ありがとうございました。</p>
+  <p class="closing-credo">「カタチ」に残すだけじゃない、<br>「ココロ」に残る仕事を。</p>
+  <p class="closing-org">株式会社C4C</p>
 </div>

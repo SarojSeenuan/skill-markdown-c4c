@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Inter+Tight:wght@400;500;700;800&family=Manrope:wght@400;500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@400;700&display=swap');
+
 /* ╔════════════════════════════════════════════════════════════════╗
    ║   M A R K D O W N - P D F   ·   D E S I G N   S Y S T E M     ║
-   ║   v3.5.0 — Swiss Modern Minimal                                ║
+   ║   v5.0.4 — Swiss Modern Minimal                                ║
    ║   Author: 株式会社C4C                                          ║
-   ║   Updated: 2026-05-23                                          ║
+   ║   Updated: 2026-05-24                                          ║
    ║   Target: VSCode Markdown PDF extension (yzane.markdown-pdf)   ║
    ║                                                                ║
    ║   BRAND CORE                                                   ║
@@ -78,6 +80,12 @@
   --hairline-md: 0.75pt solid var(--gray-30);
   --rule:        1pt solid var(--gray-90);
   --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.04), 0 2px 8px rgba(0, 0, 0, 0.04);
+
+  /* ─── 7. FONT FAMILY STACKS (v4.0) ─── */
+  --font-sans-en: 'Inter Tight', 'Manrope', 'Poppins', sans-serif;
+  --font-sans-jp: 'Noto Sans JP', 'Zen Kaku Gothic New', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'BIZ UDPGothic', sans-serif;
+  --font-display: 'Noto Sans JP', 'Inter Tight', 'Manrope', 'Hiragino Kaku Gothic ProN', sans-serif;
+  --font-mono:    'JetBrains Mono', 'Fira Code', 'Source Code Pro', monospace;
 }
 
 
@@ -96,11 +104,12 @@
 
 html, body {
   font-family:
-    "Manrope",
-    "Inter Tight",
+    "Noto Sans JP",
+    "Zen Kaku Gothic New",
     "Hiragino Kaku Gothic ProN",
     "Yu Gothic",
-    "Noto Sans JP",
+    "Manrope",
+    "Inter Tight",
     -apple-system,
     BlinkMacSystemFont,
     sans-serif !important;
@@ -126,6 +135,8 @@ html, body {
 
 h1, h2, h3, h4, h5, h6 {
   font-family:
+    "Noto Sans JP",
+    "Zen Kaku Gothic New",
     "Inter Tight",
     "Manrope",
     "Hiragino Kaku Gothic ProN",
@@ -162,7 +173,7 @@ h1::before {
    ★ Auto Page Break: H2 セクションの先頭で必ず改ページする（命令不要） */
 h2 {
   font-size: var(--fs-h2) !important;
-  font-weight: 700 !important;
+  font-weight: 800 !important;
   margin: 0 0 var(--sp-4) 0 !important;
   padding: 0 0 var(--sp-3) 0 !important;
   border-bottom: var(--hairline-md) !important;
@@ -241,6 +252,7 @@ p {
 strong, b {
   font-weight: 700 !important;
   color: var(--brand-ink) !important;
+  letter-spacing: 0.005em !important;
 }
 
 em, i {
@@ -1051,6 +1063,8 @@ hr.divider-brand::after {
   margin: 0 0 var(--sp-4) 0 !important;
   padding: 0 !important;
   border: none !important;
+  page-break-before: auto !important;
+  break-before: auto !important;
 }
 .toc h2::after,
 .toc h2::before { content: none !important; display: none !important; }
@@ -1239,6 +1253,13 @@ div[style*="page-break-after"] {
   page-break-inside: avoid !important;
   break-inside: avoid !important;
 }
+/* no-break ラッパ内の h2（典型: TOC の Index）が h2 グローバル規則の
+   page-break-before: always で改ページしないようリセット。 */
+.no-break h2,
+.no-break h2.no-page-break {
+  page-break-before: auto !important;
+  break-before: auto !important;
+}
 
 .muted {
   color: var(--gray-50) !important;
@@ -1290,15 +1311,31 @@ div[style*="page-break-after"] {
 
 .stats-grid {
   display: grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)) !important;
-  gap: var(--sp-3) !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: var(--sp-2) !important;
   margin: var(--sp-5) 0 !important;
   page-break-inside: avoid !important;
 }
+/* 子要素数で自動分岐（puppeteer Chromium は :has() 対応） */
+.stats-grid:has(> .stat-card:nth-child(3):last-child) {
+  grid-template-columns: repeat(3, 1fr) !important;
+}
+.stats-grid:has(> .stat-card:nth-child(2):last-child) {
+  grid-template-columns: 1fr 1fr !important;
+}
+.stats-grid:has(> .stat-card:only-child) {
+  grid-template-columns: minmax(180px, 320px) !important;
+  justify-content: center !important;
+}
+/* 手動上書きクラス（:has() が効かないケース用 fallback） */
+.stats-grid.cols-4 { grid-template-columns: repeat(4, 1fr) !important; }
+.stats-grid.cols-3 { grid-template-columns: repeat(3, 1fr) !important; }
+.stats-grid.cols-2 { grid-template-columns: 1fr 1fr !important; }
+.stats-grid.cols-1 { grid-template-columns: minmax(180px, 320px) !important; justify-content: center !important; }
 
 .stat-card {
   position: relative !important;
-  padding: var(--sp-4) var(--sp-4) var(--sp-4) calc(var(--sp-4) + 6pt) !important;
+  padding: var(--sp-3) var(--sp-3) var(--sp-3) calc(var(--sp-3) + 6pt) !important;
   background: var(--gray-00) !important;
   border: 0.5pt solid var(--gray-20) !important;
   border-radius: 6pt !important;
@@ -1347,7 +1384,7 @@ div[style*="page-break-after"] {
   align-items: baseline !important;
   gap: 4pt !important;
   font-family: "Inter Tight", "Manrope", sans-serif !important;
-  font-size: 22pt !important;
+  font-size: 18pt !important;
   font-weight: 700 !important;
   letter-spacing: -0.02em !important;
   line-height: 1.1 !important;
@@ -1949,14 +1986,26 @@ div[style*="page-break-after"] {
 
 .pricing {
   display: grid !important;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)) !important;
-  gap: var(--sp-4) !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 4mm !important;
   margin: var(--sp-5) 0 !important;
   page-break-inside: avoid !important;
 }
+/* 子要素数で自動分岐（puppeteer Chromium は :has() 対応） */
+.pricing:has(> .price-card:nth-child(2):last-child) {
+  grid-template-columns: 1fr 1fr !important;
+}
+.pricing:has(> .price-card:only-child) {
+  grid-template-columns: minmax(200px, 360px) !important;
+  justify-content: center !important;
+}
+/* 手動上書きクラス（:has() が効かないケース用 fallback） */
+.pricing.cols-3 { grid-template-columns: repeat(3, 1fr) !important; }
+.pricing.cols-2 { grid-template-columns: 1fr 1fr !important; }
+.pricing.cols-1 { grid-template-columns: minmax(200px, 360px) !important; justify-content: center !important; }
 
 .price-card {
-  padding: var(--sp-6) var(--sp-5) var(--sp-5) var(--sp-5) !important;
+  padding: 8mm 6mm 7mm 6mm !important;
   border: 0.5pt solid var(--gray-20) !important;
   border-radius: 6pt !important;
   background: var(--gray-00) !important;
@@ -1979,7 +2028,7 @@ div[style*="page-break-after"] {
 .price-card .price-amount {
   display: block !important;
   font-family: "Inter Tight", "Manrope", sans-serif !important;
-  font-size: 28pt !important;
+  font-size: 24pt !important;
   font-weight: 700 !important;
   letter-spacing: -0.025em !important;
   line-height: 1 !important;
@@ -2456,254 +2505,631 @@ div[style*="page-break-after"] {
 
 
 /* ════════════════════════════════════════════════════════════════
-   15 · COVER PAGE  (v3.5)
-   ════════════════════════════════════════════════════════════════ */
+   15 · COVER PAGE  (v4.0)
+   ════════════════════════════════════════════════════════════════
+   構造: top (cover-mark) / middle (cover-body: eyebrow + title + subtitle)
+        / bottom (cover-meta + cover-footer)
+   flex の space-between で 3 ゾーン縦配分。 page-break-after: always 自動。
+   テンプレ側で <div class="page-break"> を書いてはいけない（2 重改ページ）。
+   ──────────────────────────────────────────────────────────────── */
 
 .cover-page {
-  min-height: 240mm;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 30mm 12mm;
-  page-break-after: always;
-  break-after: page;
+  min-height: 245mm;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  text-align: center !important;
+  padding: 36mm 18mm 24mm 18mm !important;
+  page-break-after: always !important;
+  break-after: page !important;
 }
 
-.cover-page .cover-logo {
-  margin-bottom: 14mm;
+/* ─── v5.0: cover-mark / cover-footer は廃止（防御的に非表示） ───
+   理由: テンプレ感のある「上下に飾り」を撤去し、cover-body と meta だけの
+   非対称構成に振り切る。 過去ドキュメントの保守互換のため display:none で防御。 */
+.cover-page .cover-mark,
+.cover-page .cover-mark img,
+.cover-page .cover-mark-label,
+.cover-page .cover-footer {
+  display: none !important;
 }
 
-.cover-page .cover-logo img {
-  display: inline-block;
-  width: auto;
-  max-height: 28mm;
+/* ─── 中央ゾーン: eyebrow + title + subtitle ─── */
+.cover-page .cover-body {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex: 1 1 auto !important;
+  width: 100% !important;
+  padding: 14mm 0 !important;
 }
 
-.cover-page .cover-divider {
-  width: 60mm;
-  border: none;
-  border-top: 0.75pt solid var(--brand-primary);
-  margin: 8mm auto;
-  background: transparent;
-  height: 0;
+.cover-page .cover-eyebrow {
+  font-family: var(--font-sans-en) !important;
+  font-weight: 700 !important;
+  font-size: 8.5pt !important;
+  letter-spacing: 0.32em !important;
+  text-transform: uppercase !important;
+  color: var(--brand-primary) !important;
+  margin: 0 0 14mm 0 !important;
 }
 
 .cover-page .cover-title {
-  font-family: 'Inter Tight', 'Manrope', sans-serif;
-  font-weight: 800;
-  font-size: 32pt;
-  line-height: 1.15;
-  letter-spacing: -0.01em;
-  color: var(--brand-ink);
-  margin: 6mm 0 3mm 0;
-  padding: 0;
-  border: none;
+  font-family: var(--font-display) !important;
+  font-weight: 900 !important;
+  font-size: 38pt !important;
+  line-height: 1.25 !important;
+  letter-spacing: -0.005em !important;
+  color: var(--brand-ink) !important;
+  margin: 0 0 12mm 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  max-width: 160mm !important;
+}
+.cover-page .cover-title::before {
+  display: none !important;
 }
 
 .cover-page .cover-subtitle {
-  font-family: 'Manrope', sans-serif;
-  font-weight: 400;
-  font-size: 12pt;
-  line-height: 1.4;
-  color: var(--gray-60);
-  letter-spacing: 0.02em;
-  margin: 0 0 6mm 0;
-  max-width: 140mm;
+  font-family: var(--font-sans-jp) !important;
+  font-weight: 500 !important;
+  font-size: 13pt !important;
+  line-height: 1.8 !important;
+  color: var(--gray-70) !important;
+  letter-spacing: 0.04em !important;
+  margin: 0 auto !important;
+  max-width: 120mm !important;
+  text-align: center !important;
+  white-space: pre-line !important;
 }
 
+/* ─── 下端ゾーン: meta 表 + footer ─── */
 .cover-page table.cover-meta {
-  margin: 8mm auto 0 auto;
-  border: none;
-  border-top: 0.5pt solid var(--gray-30);
-  border-bottom: 0.5pt solid var(--gray-30);
-  border-collapse: collapse;
-  width: auto;
-  min-width: 110mm;
-  background: transparent;
+  margin: 0 auto 10mm auto !important;
+  border: none !important;
+  border-top: 0.5pt solid var(--gray-30) !important;
+  border-bottom: 0.5pt solid var(--gray-30) !important;
+  border-collapse: collapse !important;
+  width: auto !important;
+  min-width: 120mm !important;
+  background: transparent !important;
 }
 
 .cover-page table.cover-meta th,
 .cover-page table.cover-meta td {
-  border: none;
-  padding: 2.6mm 6mm;
-  font-size: 9pt;
-  line-height: 1.4;
-  background: transparent;
+  border: none !important;
+  padding: 3mm 8mm !important;
+  font-size: 9pt !important;
+  line-height: 1.4 !important;
+  background: transparent !important;
 }
 
 .cover-page table.cover-meta th {
-  font-family: 'Inter Tight', 'Manrope', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 0.18em;
-  font-size: 7.5pt;
-  font-weight: 700;
-  color: var(--brand-primary);
-  text-align: left;
-  white-space: nowrap;
-  width: 30mm;
+  font-family: var(--font-sans-en) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.2em !important;
+  font-size: 7.5pt !important;
+  font-weight: 700 !important;
+  color: var(--brand-primary) !important;
+  text-align: left !important;
+  white-space: nowrap !important;
+  width: 32mm !important;
 }
 
 .cover-page table.cover-meta td {
-  color: var(--brand-ink);
-  text-align: left;
+  font-family: var(--font-sans-jp) !important;
+  font-weight: 500 !important;
+  color: var(--brand-ink) !important;
+  text-align: left !important;
 }
 
 .cover-page table.cover-meta tr + tr th,
 .cover-page table.cover-meta tr + tr td {
-  border-top: 0.5pt dotted var(--gray-30);
+  border-top: 0.3pt dotted var(--gray-30) !important;
 }
 
 .cover-page .cover-footer {
-  margin-top: 14mm;
-  font-size: 8pt;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
+  font-family: var(--font-sans-en) !important;
+  font-size: 8pt !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.22em !important;
+  text-transform: uppercase !important;
+  color: var(--gray-60) !important;
+  margin: 0 !important;
 }
 
 
 /* ════════════════════════════════════════════════════════════════
-   16 · CLOSING PAGE  (v3.5)
-   ════════════════════════════════════════════════════════════════ */
+   16 · CLOSING PAGE  (v4.0)
+   4 パターン: .closing-message / .closing-cta / .closing-contact
+              / .closing-watermark (NEW - ロゴ背景透かし型)
+   .divider-brand を中で使ってはいけない（不要な紫菱形ページ防止）。
+   ──────────────────────────────────────────────────────────────── */
 
 .closing-page {
   min-height: 200mm;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  padding: 30mm 16mm;
-  page-break-before: always;
-  break-before: page;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+  padding: 30mm 20mm !important;
+  page-break-before: always !important;
+  break-before: page !important;
+  page-break-after: avoid !important;
+  break-after: avoid !important;
+  page-break-inside: avoid !important;
+  break-inside: avoid !important;
+  position: relative !important;
+  overflow: hidden !important;
 }
 
-.closing-page .divider-brand {
-  margin-bottom: 12mm;
+/* 締めページ内で divider-brand を書かれてしまった場合の防御。
+   不要な紫菱形ページが発生しないよう非表示にする。 */
+.closing-page .divider-brand,
+.closing-page > hr {
+  display: none !important;
 }
 
-/* — Pattern 1: C4C credo + thanks — */
+/* ─────────── Pattern 1: closing-message (v5.0 強弱再設計) ─────────── */
+/* thanks = 強・credo = 中・org = 弱 の 3 段階に整理して AI 臭を消す。
+   thanks は日本語の長文一行なのでサイズを抑えて 1 行で収める。 */
 .closing-message .closing-thanks {
-  font-family: 'Manrope', sans-serif;
-  font-size: 11pt;
-  color: var(--gray-60);
-  letter-spacing: 0.04em;
-  margin: 0 0 10mm 0;
+  font-family: var(--font-sans-jp) !important;
+  font-weight: 700 !important;
+  font-size: 12.5pt !important;
+  color: var(--brand-ink) !important;
+  letter-spacing: 0.04em !important;
+  line-height: 1.6 !important;
+  margin: 0 0 14mm 0 !important;
+  white-space: nowrap !important;
 }
 
 .closing-message .closing-credo {
-  font-family: 'Inter Tight', 'Manrope', sans-serif;
-  font-weight: 800;
-  font-size: 22pt;
-  line-height: 1.5;
-  color: var(--brand-primary);
-  margin: 0 0 14mm 0;
-  letter-spacing: -0.005em;
+  font-family: var(--font-display) !important;
+  font-weight: 900 !important;
+  font-size: 22pt !important;
+  line-height: 1.8 !important;
+  letter-spacing: 0.08em !important;
+  color: var(--brand-primary) !important;
+  text-align: center !important;
+  margin: 0 0 18mm 0 !important;
 }
 
 .closing-message .closing-org {
-  font-size: 8.5pt;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--gray-50);
+  font-family: var(--font-sans-en) !important;
+  font-weight: 700 !important;
+  font-size: 9pt !important;
+  letter-spacing: 0.32em !important;
+  text-transform: uppercase !important;
+  color: var(--gray-50) !important;
+  margin: 0 !important;
 }
 
-/* — Pattern 2: CTA — */
+/* ─────────── Pattern 1b (NEW): closing-watermark ─────────── */
+/* 大きな C4C ロゴを薄く中央配置、上に message を重ねるブランド締め。
+   提案書・コーポレート資料の最後の 1 ページに 1 回まで。 */
+.closing-watermark {
+  position: relative !important;
+}
+
+.closing-watermark .watermark-logo {
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  width: 170mm !important;
+  height: auto !important;
+  max-height: none !important;
+  opacity: 0.12 !important;
+  z-index: 0 !important;
+  pointer-events: none !important;
+}
+
+.closing-watermark .closing-thanks,
+.closing-watermark .closing-credo,
+.closing-watermark .closing-org {
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.closing-watermark .closing-thanks {
+  font-family: var(--font-sans-jp) !important;
+  font-weight: 700 !important;
+  font-size: 12.5pt !important;
+  color: var(--brand-ink) !important;
+  letter-spacing: 0.04em !important;
+  line-height: 1.6 !important;
+  margin: 0 0 14mm 0 !important;
+  white-space: nowrap !important;
+}
+
+.closing-watermark .closing-credo {
+  font-family: var(--font-display) !important;
+  font-weight: 900 !important;
+  font-size: 22pt !important;
+  line-height: 1.8 !important;
+  letter-spacing: 0.08em !important;
+  color: var(--brand-primary) !important;
+  text-align: center !important;
+  margin: 0 0 18mm 0 !important;
+}
+
+.closing-watermark .closing-org {
+  font-family: var(--font-sans-en) !important;
+  font-weight: 700 !important;
+  font-size: 9pt !important;
+  letter-spacing: 0.32em !important;
+  text-transform: uppercase !important;
+  color: var(--gray-50) !important;
+  margin: 0 !important;
+}
+
+/* ─────────── Pattern 2: closing-cta (v5.0.3 Editorial 再設計) ─────────── */
+/* closing-contact と同じ語彙: 大型タイポ + 左短バー + 右上ドット装飾 +
+   右下ブランドアーク。 center-stack の AI 量産レイアウトを撤廃し、
+   左寄せ Editorial にする。 */
+
+.closing-cta {
+  align-items: stretch !important;
+  justify-content: flex-start !important;
+  text-align: left !important;
+  padding: 32mm 24mm 28mm 24mm !important;
+  position: relative !important;
+}
+
+/* 右上ドット装飾 */
+.closing-cta::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 22mm !important;
+  right: 20mm !important;
+  width: 38mm !important;
+  height: 22mm !important;
+  background-image: radial-gradient(circle, var(--gray-30) 0.6pt, transparent 0.8pt) !important;
+  background-size: 3mm 3mm !important;
+  background-position: 0 0 !important;
+  opacity: 0.65 !important;
+  pointer-events: none !important;
+}
+
+/* 右下リング装飾は撤去（v5.0.4） */
+.closing-cta::after {
+  display: none !important;
+}
+
+.closing-cta .closing-cta-eyebrow {
+  display: none !important;
+}
+
 .closing-cta .closing-cta-title {
-  font-family: 'Inter Tight', 'Manrope', sans-serif;
-  font-weight: 800;
-  font-size: 22pt;
-  color: var(--brand-ink);
-  margin: 0 0 6mm 0;
-  border: none;
-  padding: 0;
-  page-break-before: avoid;
-  break-before: avoid;
+  position: relative !important;
+  font-family: var(--font-display) !important;
+  font-weight: 700 !important;
+  font-size: 56pt !important;
+  line-height: 1 !important;
+  letter-spacing: -0.02em !important;
+  color: var(--brand-primary) !important;
+  margin: 0 0 4mm 0 !important;
+  padding: 0 0 0 10mm !important;
+  border: none !important;
+  page-break-before: avoid !important;
+  break-before: avoid !important;
+}
+.closing-cta .closing-cta-title::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 4mm !important;
+  width: 4mm !important;
+  height: 18mm !important;
+  background: var(--brand-primary) !important;
+}
+.closing-cta .closing-cta-title::after {
+  display: none !important;
+}
+.closing-cta .closing-cta-title small {
+  display: block !important;
+  font-family: var(--font-sans-jp) !important;
+  font-weight: 500 !important;
+  font-size: 14pt !important;
+  letter-spacing: 0.4em !important;
+  color: var(--brand-primary) !important;
+  margin: 4mm 0 0 0 !important;
 }
 
 .closing-cta .closing-cta-body {
-  font-size: 11pt;
-  line-height: 1.7;
-  color: var(--gray-70);
-  margin: 0 0 10mm 0;
-  max-width: 130mm;
+  font-family: var(--font-sans-jp) !important;
+  font-weight: 500 !important;
+  font-size: 12pt !important;
+  line-height: 1.85 !important;
+  color: var(--brand-ink) !important;
+  margin: 12mm 0 10mm 10mm !important;
+  max-width: 115mm !important;
+  text-align: left !important;
+  white-space: pre-line !important;
 }
 
 .closing-cta .closing-cta-button {
-  margin: 0;
-}
-
-.closing-cta .closing-cta-button a {
-  display: inline-block;
-  padding: 4mm 10mm;
-  font-family: 'Inter Tight', 'Manrope', sans-serif;
-  font-weight: 700;
-  font-size: 11pt;
-  letter-spacing: 0.06em;
+  display: inline-block !important;
+  padding: 5mm 14mm !important;
+  font-family: var(--font-sans-en) !important;
+  font-weight: 700 !important;
+  font-size: 11pt !important;
+  letter-spacing: 0.18em !important;
   color: #FFFFFF !important;
-  background: var(--brand-primary);
-  border: none;
-  border-radius: 1.2mm;
-  text-decoration: none;
+  background: var(--brand-primary) !important;
+  border: none !important;
+  border-radius: 1mm !important;
+  text-decoration: none !important;
+  margin: 0 0 18mm 10mm !important;
+  text-transform: uppercase !important;
 }
 
-/* — Pattern 3: Contact — */
+.closing-cta .closing-cta-meta {
+  position: absolute !important;
+  left: 24mm !important;
+  bottom: 22mm !important;
+  font-family: var(--font-sans-en) !important;
+  font-weight: 700 !important;
+  font-size: 8.5pt !important;
+  letter-spacing: 0.28em !important;
+  text-transform: uppercase !important;
+  color: var(--brand-ink) !important;
+  margin: 0 !important;
+  padding-left: 4mm !important;
+  border-left: 1.5pt solid var(--brand-primary) !important;
+  line-height: 1.5 !important;
+}
+.closing-cta .closing-cta-meta small {
+  display: block !important;
+  font-family: var(--font-sans-jp) !important;
+  font-weight: 500 !important;
+  font-size: 7.5pt !important;
+  letter-spacing: 0.06em !important;
+  text-transform: none !important;
+  color: var(--gray-60) !important;
+  margin-top: 1.5mm !important;
+}
+
+/* ─────────── Pattern 3: closing-contact (v5.0.3 全面再設計) ─────────── */
+/* 参考デザイン: 大型 Contact タイポ + 左短バー / 円形塗アイコン + horizontal
+   divider line + 2 段テキスト構造。 box 囲み・left-border カードは AI 量産デザインの
+   定型なので完全撤廃。 余白優位の Editorial レイアウト。 */
+
+.closing-contact {
+  align-items: stretch !important;
+  justify-content: flex-start !important;
+  text-align: left !important;
+  padding: 32mm 24mm 28mm 24mm !important;
+  position: relative !important;
+}
+
+/* 右上のドット装飾（参考デザインのドットパターン） */
+.closing-contact::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 22mm !important;
+  right: 20mm !important;
+  width: 38mm !important;
+  height: 22mm !important;
+  background-image: radial-gradient(circle, var(--gray-30) 0.6pt, transparent 0.8pt) !important;
+  background-size: 3mm 3mm !important;
+  background-position: 0 0 !important;
+  opacity: 0.65 !important;
+  pointer-events: none !important;
+}
+
+/* 右下リング装飾は撤去（v5.0.4） */
+.closing-contact::after {
+  display: none !important;
+}
+
+.closing-contact .closing-contact-eyebrow {
+  display: none !important;
+}
+
 .closing-contact h2 {
-  font-family: 'Inter Tight', 'Manrope', sans-serif;
-  font-weight: 800;
-  font-size: 18pt;
-  color: var(--brand-ink);
-  margin: 0 0 8mm 0;
-  border: none;
-  padding: 0;
-  page-break-before: avoid;
-  break-before: avoid;
+  position: relative !important;
+  font-family: var(--font-display) !important;
+  font-weight: 700 !important;
+  font-size: 56pt !important;
+  letter-spacing: -0.02em !important;
+  line-height: 1 !important;
+  color: var(--brand-primary) !important;
+  margin: 0 0 4mm 0 !important;
+  padding: 0 0 0 10mm !important;
+  border: none !important;
+  page-break-before: avoid !important;
+  break-before: avoid !important;
 }
 
-.closing-contact dl {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 3mm 8mm;
-  text-align: left;
-  margin: 0 auto;
-  max-width: 130mm;
-  font-size: 10pt;
+/* H2 の左短バー（参考デザインの "|" 縦バー） */
+.closing-contact h2::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 0 !important;
+  top: 4mm !important;
+  width: 4mm !important;
+  height: 18mm !important;
+  background: var(--brand-primary) !important;
 }
 
-.closing-contact dt {
-  font-family: 'Inter Tight', 'Manrope', sans-serif;
-  font-weight: 700;
-  font-size: 8pt;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--brand-primary);
-  align-self: center;
+.closing-contact h2::after {
+  display: none !important;
 }
 
-.closing-contact dd {
-  margin: 0;
-  color: var(--brand-ink);
-  align-self: center;
+/* 日本語サブタイトル（"連絡先"）— H2 の中に <small> として埋める */
+.closing-contact h2 small {
+  display: block !important;
+  font-family: var(--font-sans-jp) !important;
+  font-weight: 500 !important;
+  font-size: 14pt !important;
+  letter-spacing: 0.4em !important;
+  color: var(--brand-primary) !important;
+  margin: 4mm 0 0 0 !important;
 }
 
-/* — Pattern 4: Visual — */
+/* H2 と本文を区切る短いヘアライン（参考デザインの紫水平線） */
+.closing-contact .contact-rule {
+  width: 36mm !important;
+  height: 0.6pt !important;
+  background: var(--brand-primary) !important;
+  border: none !important;
+  margin: 8mm 0 12mm 10mm !important;
+  display: block !important;
+}
+
+/* ミッションメッセージ（参考デザインの "人と組織に自由な選択肢を" 2 行） */
+.closing-contact .contact-mission {
+  font-family: var(--font-sans-jp) !important;
+  font-weight: 500 !important;
+  font-size: 14pt !important;
+  line-height: 1.7 !important;
+  letter-spacing: 0.04em !important;
+  color: var(--brand-ink) !important;
+  margin: 0 0 3mm 10mm !important;
+  max-width: 110mm !important;
+}
+
+/* タグライン英文（参考デザインの "Country for Country"） */
+.closing-contact .contact-tagline {
+  font-family: var(--font-sans-en) !important;
+  font-weight: 500 !important;
+  font-size: 11pt !important;
+  letter-spacing: 0.08em !important;
+  color: var(--brand-primary) !important;
+  margin: 0 0 18mm 10mm !important;
+}
+
+/* 下端タグライン（参考デザインの "CHALLENGE FOR CHANGE"） */
+.closing-contact .contact-footer-tagline {
+  position: absolute !important;
+  left: 24mm !important;
+  bottom: 22mm !important;
+  font-family: var(--font-sans-en) !important;
+  font-weight: 700 !important;
+  font-size: 8.5pt !important;
+  letter-spacing: 0.28em !important;
+  color: var(--brand-ink) !important;
+  margin: 0 !important;
+  padding-left: 4mm !important;
+  border-left: 1.5pt solid var(--brand-primary) !important;
+  line-height: 1.5 !important;
+}
+.closing-contact .contact-footer-tagline small {
+  display: block !important;
+  font-family: var(--font-sans-jp) !important;
+  font-weight: 500 !important;
+  font-size: 7.5pt !important;
+  letter-spacing: 0.06em !important;
+  color: var(--gray-60) !important;
+  margin-top: 1.5mm !important;
+}
+
+/* v5.0.3: 円形アイコン + horizontal divider の Editorial 連絡先構造。
+   旧 contact-card (box 囲み) は廃止。 参考デザイン準拠の縦リスト構造。 */
+
+/* contact-card は単純な縦リストコンテナに */
+.closing-contact .contact-card {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+  max-width: 130mm !important;
+  margin: 0 0 0 10mm !important;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+/* 各 contact-row = 円形アイコン + テキスト 2 段。 下に細い divider 線。 */
+.closing-contact .contact-row {
+  display: grid !important;
+  grid-template-columns: 14mm 1fr !important;
+  align-items: center !important;
+  gap: 6mm !important;
+  padding: 5mm 0 !important;
+  background: transparent !important;
+  border: none !important;
+  border-bottom: 0.5pt solid var(--gray-20) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+.closing-contact .contact-row::after { content: none !important; display: none !important; }
+.closing-contact .contact-row:last-child { border-bottom: none !important; }
+.closing-contact .contact-row:nth-child(even) {
+  box-shadow: none !important;
+}
+
+/* 円形ブランドカラーアイコン枠 — SVG アイコンを内包する flex container。
+   コンテンツ（直書き SVG）は #fff で描画される。 */
+.closing-contact .contact-label {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 11mm !important;
+  height: 11mm !important;
+  border-radius: 50% !important;
+  background: var(--brand-primary) !important;
+  color: #FFFFFF !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  /* 英字テキストが残っていた場合は非表示にして円を保つ（保険） */
+  font-size: 0 !important;
+}
+.closing-contact .contact-label svg {
+  width: 5.5mm !important;
+  height: 5.5mm !important;
+  stroke: #FFFFFF !important;
+  fill: none !important;
+  stroke-width: 1.8 !important;
+  stroke-linecap: round !important;
+  stroke-linejoin: round !important;
+}
+
+/* 値テキスト（メイン値 + サブ値の 2 段構造） */
+.closing-contact .contact-value {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1mm !important;
+  font-family: var(--font-sans-jp) !important;
+  font-weight: 600 !important;
+  font-size: 12pt !important;
+  letter-spacing: 0.01em !important;
+  line-height: 1.35 !important;
+  color: var(--brand-ink) !important;
+  word-break: break-all !important;
+}
+/* contact-value 内の <small> はサブ説明（DEVELOPMENT TEAM 等） */
+.closing-contact .contact-value small {
+  font-family: var(--font-sans-en) !important;
+  font-weight: 500 !important;
+  font-size: 7.5pt !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+  color: var(--gray-60) !important;
+  line-height: 1 !important;
+}
+
+/* ─────────── Pattern 4: closing-visual (legacy retained) ─────────── */
 .closing-visual figure {
-  margin: 0;
-  max-width: 150mm;
+  margin: 0 !important;
+  max-width: 150mm !important;
 }
 
 .closing-visual figure img {
-  max-width: 100%;
-  height: auto;
+  max-width: 100% !important;
+  height: auto !important;
 }
 
 .closing-visual figcaption {
-  margin-top: 8mm;
-  font-family: 'Inter Tight', 'Manrope', sans-serif;
-  font-weight: 700;
-  font-size: 14pt;
-  line-height: 1.6;
-  letter-spacing: 0.02em;
+  margin-top: 8mm !important;
+  font-family: var(--font-display) !important;
+  font-weight: 700 !important;
+  font-size: 14pt !important;
+  line-height: 1.6 !important;
+  letter-spacing: 0.02em !important;
 }
 
