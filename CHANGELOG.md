@@ -5,6 +5,27 @@ All notable changes to **skill-markdown-c4c** will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.1.1] — 2026-05-25
+
+### Added
+- **`SETUP-WEB.md` / `SETUP-WEB.pdf` を新規同梱** — Claude Web 無料版での導入手順を画面キャプチャ 18 枚（`assets/setup-web/00-17`）付きで解説した非開発者向けセットアップガイド。 VS Code Markdown PDF 拡張のセットアップから ZIP アップロード、スキル発火確認、PDF 出力まで Windows / macOS / Linux 共通の手順
+- **配布 ZIP `markdown-c4c-v5.1.1.zip` に `SETUP-WEB.md` / `SETUP-WEB.pdf` を同梱** — Claude Web 登録後に説明書をオフライン閲覧可能。 ZIP ルート直下に配置（`markdown-c4c/SETUP-WEB.md` / `markdown-c4c/SETUP-WEB.pdf`）
+- **`docs/SETUP-WEB.md` / `docs/SETUP-WEB.pdf` 配置** — 既存の `docs/markdown-c4c-reference.md` などと同じ docs/ 直下に配置し、GitHub 閲覧時の発見性向上
+- **`scripts/install.js` 新規作成** — Node.js 純正クロス OS インストーラ（`fs.cpSync` のみ使用、Bash / PowerShell 非依存）。 `npx -y .` または `npm link && markdown-c4c-skill` でスキル投入可能
+- `package.json` に `bin: markdown-c4c-skill` + `engines.node: ">=16.7.0"` + `install:skill` script を追加
+- SKILL.md tags に `setup-guide` / `claude-web` を追加
+
+### Changed
+- **`scripts/build-zip.sh` / `build-zip.ps1` の PDF 除外ルール変更** — `*.pdf` 一括除外から `template-document.pdf` のみ除外に変更。 SETUP-WEB.pdf など説明書 PDF は ZIP に同梱される
+- **インストーラのバナー表記を v5.1.1 に更新** — `install.sh` / `install.ps1` / `install.js` の 3 種すべて
+- **`scripts/validate-zip.py` のデフォルト ZIP 名を v5.1.1 に更新**
+- **`README.md` 更新** — 旧 `markdown-c4c-web-v1.0.0/` 参照を `SETUP-WEB.md` に書き換え、 Repository Structure に SETUP-WEB ファイル群を明記、 npx 経由のインストール手順を C セクションに追加
+
+### Removed
+- **`markdown-c4c-web-v1.0.0/` フォルダ削除** — Claude Web 配布パッケージは ZIP に統合され、 旧フォルダ構造は不要になったため。 セットアップ手順は `SETUP-WEB.md` に集約
+- **旧 ZIP `markdown-c4c-v3.5.0.zip` / `markdown-c4c-v4.0.0.zip` 削除** — バージョン履歴は CHANGELOG と RELEASE ノートで追跡可能
+- `bash.exe.stackdump`（Git Bash クラッシュゴミ）を削除
+
 ## [5.1.0] — 2026-05-24
 
 ### Added

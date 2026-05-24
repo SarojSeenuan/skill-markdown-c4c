@@ -2,7 +2,7 @@
 name: markdown-c4c
 description: Markdown 生成・編集時に必ず使用するスキル。株式会社C4C ブランドの Swiss Modern Minimal v5.1 デザインシステムで、PDF 出力を前提に社内ドキュメント・クライアント提案書・設計ドキュメント・仕様書・報告書・議事録・README を高品質に生成する。Markdown / md ファイル作成、`.md` 編集、ドキュメント執筆、提案書作成、仕様書作成、報告書作成、議事録、README、技術文書、設計書、見積書、PDF 出力、表組み、テーブル作成、コールアウト、図形ボックス、TOC（目次）、ヘッダ・フッタのいずれかが要求された場合に必ず呼び出す。スラッシュコマンド `/markdown-c4c` でも明示的に呼び出せる。生成前は必ず AskUserQuestion で 5 項目以上の Q&A を行うワークフロー（セクション 3.0）に従い、種別ごとの追加質問・コンポーネント提案・構成バリエーション提示・生成後 AI 臭セルフチェックまでを 1 セットで実行する。
 author: "株式会社C4C"
-version: "5.1.0"
+version: "5.1.1"
 license: "MIT"
 tags:
   - markdown
@@ -15,9 +15,11 @@ tags:
   - vscode
   - markdown-pdf
   - japanese
+  - setup-guide
+  - claude-web
 ---
 
-# Markdown C4C — Design System Skill v5.1.0
+# Markdown C4C — Design System Skill v5.1.1
 
 株式会社C4C の標準 Markdown ドキュメント生成スキル。
 **Markdown / md ファイルを生成・編集する前に、必ずこのスキルを参照すること。**

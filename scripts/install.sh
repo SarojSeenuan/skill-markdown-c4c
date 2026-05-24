@@ -15,7 +15,7 @@ RESET='\033[0m'
 
 echo ""
 echo -e "${BRAND}╔═══════════════════════════════════════════════════════════════╗${RESET}"
-echo -e "${BRAND}║   skill-markdown-c4c v3.0.0 — Swiss Modern Minimal           ║${RESET}"
+echo -e "${BRAND}║   skill-markdown-c4c v5.1.1 — Swiss Modern Minimal           ║${RESET}"
 echo -e "${BRAND}║   株式会社C4C — Markdown Document Generation Skill           ║${RESET}"
 echo -e "${BRAND}╚═══════════════════════════════════════════════════════════════╝${RESET}"
 echo ""

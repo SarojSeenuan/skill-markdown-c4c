@@ -14,7 +14,7 @@ function Write-Section($msg) { Write-Host "▸ " -NoNewline -ForegroundColor Mag
 
 Write-Host ""
 Write-Brand "╔═══════════════════════════════════════════════════════════════╗"
-Write-Brand "║   skill-markdown-c4c v3.0.0 — Swiss Modern Minimal           ║"
+Write-Brand "║   skill-markdown-c4c v5.1.1 — Swiss Modern Minimal           ║"
 Write-Brand "║   株式会社C4C — Markdown Document Generation Skill           ║"
 Write-Brand "╚═══════════════════════════════════════════════════════════════╝"
 Write-Host ""

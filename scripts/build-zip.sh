@@ -4,7 +4,8 @@
 # - skill/ 配下を ZIP ルートの markdown-c4c/ に再配置
 # - 標準 zip コマンドは forward slash `/` を使うため OK
 # - SKILL.md frontmatter から version を読み取り、出力名を自動設定
-# - __MACOSX / .DS_Store / Thumbs.db / *.pdf / .git は除外
+# - __MACOSX / .DS_Store / Thumbs.db / template-document.pdf / .git は除外
+# - SETUP-WEB.pdf などその他の PDF は同梱する
 
 set -euo pipefail
 
@@ -51,7 +52,7 @@ if command -v rsync >/dev/null 2>&1; then
     --exclude 'Thumbs.db' \
     --exclude '.git/' \
     --exclude '.gitignore' \
-    --exclude '*.pdf' \
+    --exclude 'template-document.pdf' \
     "$SOURCE_DIR/" "$STAGE/"
 else
   cp -r "$SOURCE_DIR/." "$STAGE/"
@@ -61,7 +62,7 @@ else
        -name 'Thumbs.db' -o \
        -name '.git' -o \
        -name '.gitignore' -o \
-       -name '*.pdf' \
+       -name 'template-document.pdf' \
        \) -prune -exec rm -rf {} +
 fi
 

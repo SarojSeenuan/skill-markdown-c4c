@@ -18,7 +18,7 @@ import re
 import sys
 import zipfile
 
-DEFAULT_ZIP = "markdown-c4c-v3.5.0.zip"
+DEFAULT_ZIP = "markdown-c4c-v5.1.1.zip"
 
 
 def fail(msg: str) -> None:

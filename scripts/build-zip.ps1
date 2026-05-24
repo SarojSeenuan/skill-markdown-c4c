@@ -9,7 +9,8 @@
   - skill name と一致するルートフォルダ名 (markdown-c4c) を強制
   - SKILL.md frontmatter から version を読み取り、出力ファイル名を
     markdown-c4c-v<VERSION>.zip に自動設定
-  - __MACOSX / .DS_Store / Thumbs.db / *.pdf / .git は除外
+  - __MACOSX / .DS_Store / Thumbs.db / template-document.pdf / .git は除外
+  - SETUP-WEB.pdf などその他の PDF は同梱する
   - 生成後にエントリ名にバックスラッシュが含まれていないか自己検証
 
 .NOTES
@@ -58,7 +59,7 @@ function Should-Exclude {
         'Thumbs\.db$',
         '\.git[\\/]',
         '\.gitignore$',
-        '\.pdf$'
+        'template-document\.pdf$'
     )
     foreach ($pattern in $excludePatterns) {
         if ($RelativePath -match $pattern) { return $true }

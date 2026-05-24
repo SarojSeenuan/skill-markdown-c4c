@@ -1,7 +1,7 @@
 {
   "name": "skill-markdown-c4c",
-  "version": "5.1.0",
-  "description": "株式会社C4C ブランドの Markdown ドキュメント生成スキル — Swiss Modern Minimal v5.1",
+  "version": "5.1.1",
+  "description": "株式会社C4C ブランドの Markdown ドキュメント生成スキル — Swiss Modern Minimal v5.1（Claude Web セットアップガイド同梱）",
   "keywords": [
     "claude-code",
     "claude-skill",
@@ -14,11 +14,20 @@
     "c4c",
     "japanese",
     "vscode",
-    "markdown-pdf"
+    "markdown-pdf",
+    "setup-guide",
+    "claude-web"
   ],
   "author": "株式会社C4C",
   "license": "MIT",
+  "engines": {
+    "node": ">=16.7.0"
+  },
+  "bin": {
+    "markdown-c4c-skill": "./scripts/install.js"
+  },
   "scripts": {
+    "install:skill": "node ./scripts/install.js",
     "build:zip": "node -e \"const os=require('os');const{execSync}=require('child_process');const cmd=os.platform()==='win32'?'pwsh -ExecutionPolicy Bypass -File ./scripts/build-zip.ps1':'bash ./scripts/build-zip.sh';execSync(cmd,{stdio:'inherit'})\""
   },
   "claude": {
